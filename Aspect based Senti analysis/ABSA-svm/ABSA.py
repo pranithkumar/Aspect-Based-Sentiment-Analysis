@@ -208,7 +208,7 @@ final_train_text_list=filterTag(tagged_text_list_train)
 #get data frame
 df_train = get_data_frame(final_train_text_list,train_opinion_list,most_common_aspect)
 df_train_aspect = get_aspect_data_frame(df_train,most_common_aspect)
-df_train_aspect = df_train_aspect.reindex_axis(sorted(df_train_aspect.columns), axis=1)
+df_train_aspect = df_train_aspect.reindex(sorted(df_train_aspect.columns), axis=1)
 
 
 # In[16]:
@@ -237,7 +237,7 @@ final_test_text_list=filterTag(tagged_text_list_test)
 
 df_test = get_data_frame(final_test_text_list,test_opinion_list,most_common_aspect)
 df_test_aspect = get_aspect_data_frame(df_test,most_common_aspect)
-df_test_aspect = df_test_aspect.reindex_axis(sorted(df_test_aspect.columns), axis=1)
+df_test_aspect = df_test_aspect.reindex(sorted(df_test_aspect.columns), axis=1)
 
 
 # In[20]:
