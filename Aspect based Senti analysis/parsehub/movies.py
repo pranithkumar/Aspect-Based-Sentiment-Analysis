@@ -30,7 +30,7 @@ def success(name):
 		ans="{"+res[-2]+"}"
 		pages=ast.literal_eval(ans)
 		print pages['pages']
-		if str(pages['pages']) >= '5' :
+		if str(pages['pages']) >= '7' :
 			rc = requests.post("https://www.parsehub.com/api/v2/runs/"+rp.text[15:27]+"/cancel", data=params)
 			break
 	params = {
