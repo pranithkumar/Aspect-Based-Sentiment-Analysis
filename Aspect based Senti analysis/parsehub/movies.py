@@ -29,17 +29,18 @@ def success(name):
 		res=rd.text.split(',')
 		ans="{"+res[-2]+"}"
 		pages=ast.literal_eval(ans)
-		print pages['pages']
-		if str(pages['pages']) >= '5' :
+		print rp.text[15:27]+" scraped "+str(pages['pages'])+" pages"
+		if pages['pages'] >= 6 :
 			rc = requests.post("https://www.parsehub.com/api/v2/runs/"+rp.text[15:27]+"/cancel", data=params)
 			break
 	params = {
   	"api_key": "t3vujAq8hAiM",
   	"format": "json"
 	}
-	scrape = requests.get('https://www.parsehub.com/api/v2/runs/'+rp.text[15:27]+'/data', params=params)
+	scrape = requests.get("https://www.parsehub.com/api/v2/runs/"+str(rp.text[15:27])+"/data", params=params)
 	print scrape.text
 	return render_template('review.html', Reviews=json.loads(scrape.text)['Reviews'])
+	return "%s" % scrape.text
 
 @app.route('/')
 def homepage():
