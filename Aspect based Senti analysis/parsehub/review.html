@@ -1,0 +1,11 @@
+<html>
+	<body>	
+	<h1>Reviews</h1>
+  	{% for review in Reviews %}
+    	<div>{{review["Title"]}}</div>
+    	<div>{{review["Reviewer"]}}</div>
+		<div>{{review["Date"]}}</div>
+		<div>{{review["Review"]}}</div>
+  	{% endfor %}
+ 	</body>
+</html>

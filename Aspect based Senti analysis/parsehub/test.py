@@ -1,3 +1,6 @@
-from ph2 import ParseHub
-ph = ParseHub('t3vujAq8hAiM')
-print(ph.projects)
+i=0
+while True:
+	i=i+1
+	if i == 6:
+		break
+print "Finished %s" % i
