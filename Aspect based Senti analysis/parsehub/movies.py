@@ -17,7 +17,7 @@ def success(name):
   	"api_key": "t3vujAq8hAiM",
   	"start_template": "main_template",
   	"start_value_override": "{\"query\": \"%s\"}" %name,
-  	"send_email": "1"
+  	"send_email": "0"
 	}
 	rp = requests.post("https://www.parsehub.com/api/v2/projects/tBL3WgTTr4aA/run", data=params)
 
@@ -25,22 +25,21 @@ def success(name):
   	"api_key": "t3vujAq8hAiM"
 	}
 	while True:
-		rd = requests.get('https://www.parsehub.com/api/v2/runs/'+rp.text[15:27], params=params)
+		rd = requests.get('https://www.parsehub.com/api/v2/runs/'+str(rp.text[15:27]), params=params)
 		res=rd.text.split(',')
 		ans="{"+res[-2]+"}"
 		pages=ast.literal_eval(ans)
-		print rp.text[15:27]+" scraped "+str(pages['pages'])+" pages"
-		if pages['pages'] >= 6 :
-			rc = requests.post("https://www.parsehub.com/api/v2/runs/"+rp.text[15:27]+"/cancel", data=params)
+		print pages['pages']
+		if str(pages['pages']) >= '5' :
+			rc = requests.post("https://www.parsehub.com/api/v2/runs/"+str(rp.text[15:27])+"/cancel", data=params)
 			break
 	params = {
   	"api_key": "t3vujAq8hAiM",
   	"format": "json"
 	}
-	scrape = requests.get("https://www.parsehub.com/api/v2/runs/"+str(rp.text[15:27])+"/data", params=params)
+	scrape = requests.get('https://www.parsehub.com/api/v2/runs/'+str(rp.text[15:27])+'/data', params=params)
 	print scrape.text
 	return render_template('review.html', Reviews=json.loads(scrape.text)['Reviews'])
-	return "%s" % scrape.text
 
 @app.route('/')
 def homepage():
