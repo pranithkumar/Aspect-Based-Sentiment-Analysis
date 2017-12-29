@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>ABSA-96,106</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+	<div class="container">
+		<div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="http://0.0.0.0:5000">Home</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">ABSA Flask App</h3>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Reviews</div>
+        <div class="panel-body">
+            {% for review in Reviews %}
+            <h3>Title: </h3> <div>{{review["Title"]}}</div>
+            <h3>Name: </h3> <div>{{review["Reviewer"]}}</div>
+            <h3>Date: </h3> <div>{{review["Date"]}}</div>
+            <h3>Review: </h3> <div>{{review["Review"]}}</div>
+            <hr class="hr-primary" />
+            {% endfor %}
+        </div>
+    </div>
+  	</div>
+   </body>
+</html>
