@@ -28,6 +28,6 @@ class CompleteamazonscraperSpider(scrapy.Spider):
         	"title":title,
         	"rating":rating,
         	"date":date,
-            "verification":verification,
+            	"verification":verification,
         	"review":review
         }
