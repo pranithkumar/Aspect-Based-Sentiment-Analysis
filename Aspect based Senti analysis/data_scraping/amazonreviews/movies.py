@@ -21,14 +21,10 @@ def success(name):
     f = open('input.txt','w')
     f.write(name)
     f.close()
-    runf = 'scrapy crawl searchspider'
-    os.system(runf)
-    runf = 'scrapy crawl getproductspider'
-    os.system(runf)
-    runf = 'scrapy crawl completeamazonscraper -o amazonreviews.json'
-    os.system(runf)
-    sys.exit(0)
-    return render_template('review.html', Reviews=json.load(open('data.json')))
+    os.system("scrapy crawl searchspider")
+    os.system("scrapy crawl getproductspider")
+    os.system("scrapy crawl completeamazonscraper -o amazonreviews.json")
+    return render_template('review.html', Reviews=json.load(open('amazonreviews.json')))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
