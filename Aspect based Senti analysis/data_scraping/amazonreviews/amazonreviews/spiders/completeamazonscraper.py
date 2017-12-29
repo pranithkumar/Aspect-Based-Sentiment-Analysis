@@ -5,9 +5,16 @@ import scrapy
 class CompleteamazonscraperSpider(scrapy.Spider):
     name = 'completeamazonscraper'
     allowed_domains = ['amazon.in']
+    f=open("amazonreviews.json","w")
+    f.close()
     f=open("productlink.txt","r")
-    link=f.read()
-    start_urls = ['http://amazon.in/'+link+'&pageNumber={}'.format(i) for i in range(1,20)]
+    contents=f.read()
+    link=contents.split("\n")
+    if(int(link[1])/10<20):
+        n=int(link[1])/10
+    else:
+        n=20
+    start_urls = ['http://amazon.in/'+link[0]+'&pageNumber={}'.format(i) for i in range(1,n)]
 
     def parse(self, response):
         review = response.xpath('//span[contains(@class,"a-size-base review-text")]/text()').extract()
@@ -21,5 +28,6 @@ class CompleteamazonscraperSpider(scrapy.Spider):
         	"title":title,
         	"rating":rating,
         	"date":date,
+            "verification":verification,
         	"review":review
         }

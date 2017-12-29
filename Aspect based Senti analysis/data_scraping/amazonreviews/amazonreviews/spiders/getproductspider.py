@@ -12,5 +12,9 @@ class GetproductspiderSpider(scrapy.Spider):
 
     def parse(self, response):
     	link = response.xpath('//a[contains(@class,"a-link-emphasis a-text-bold")]/@href').extract()
+        temp = response.xpath('//a[contains(@class,"a-link-emphasis a-text-bold")]/text()').extract()
+        num = temp[0].split(" ")
+        total = int(num[2].replace(",",""))
         f=open("productlink.txt","w")
         f.write(str(link[0]))
+        f.write("\n"+str(total))
