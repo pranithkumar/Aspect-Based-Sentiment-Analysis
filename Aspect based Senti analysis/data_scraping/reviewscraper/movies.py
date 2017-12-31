@@ -4,6 +4,7 @@ import json
 import ast
 import os
 import sys
+import time
 
 app = Flask(__name__, template_folder='.')
 
@@ -21,10 +22,12 @@ def success(name):
     f = open('input.txt','w')
     f.write(name)
     f.close()
-    os.system("scrapy crawl searchspider")
-    os.system("scrapy crawl getproductspider")
+    os.system("scrapy crawl searchspiderflipkart")
+    os.system("scrapy crawl completeflipkartscraper -o flipkartreviews.json")
+    os.system("scrapy crawl searchspideramazon")
+    os.system("scrapy crawl getproductspideramazon")
     os.system("scrapy crawl completeamazonscraper -o amazonreviews.json")
-    return render_template('review.html', AmazonReviews=json.load(open('amazonreviews.json')))
+    return render_template('review.html', AmazonReviews=json.load(open('amazonreviews.json')), FlipkartReviews=json.load(open('flipkartreviews.json')))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
