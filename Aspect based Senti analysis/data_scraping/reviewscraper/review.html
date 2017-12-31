@@ -22,7 +22,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Reviews</div>
         <div class="panel-body">
-            <h4>Reviews from amazon</h4>
+            <h2>Reviews from Amazon</h2>
             {% for review in AmazonReviews %}
             {% for i in range(0,10)%}
             <h3>Title: </h3> <div>{{review["title"][i]}}</div>
@@ -31,6 +31,15 @@
             <h3>Review: </h3> <div>{{review["review"][i]}}</div>
             <hr class="hr-primary" />
             {% endfor %}
+            {% endfor %}
+            </br>
+            <h2>Reviews from Flipkart</h2>
+            {% for review in FlipkartReviews %}
+            <h3>Title: </h3> <div>{{review["title"]}}</div>
+            <h3>Name: </h3> <div>{{review["reviewer"]}}</div>
+            <h3>Date: </h3> <div>{{review["date"]}}</div>
+            <h3>Review: </h3> <div>{{review["review"]}}</div>
+            <hr class="hr-primary" />
             {% endfor %}
         </div>
     </div>
