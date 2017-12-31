@@ -2,7 +2,6 @@
 import scrapy
 import html2text
 
-
 class CompleteamazonscraperSpider(scrapy.Spider):
     name = 'completeamazonscraper'
     allowed_domains = ['amazon.in']
@@ -11,10 +10,10 @@ class CompleteamazonscraperSpider(scrapy.Spider):
     f=open("productlink.txt","r")
     contents=f.read()
     link=contents.split("\n")
-    if(int(link[1])/10<20):
-        n=int(link[1])/10
-    else:
-        n=10
+    #if(int(link[1])/10<20):
+    #    n=int(link[1])/10
+    #else:
+    n=10
     start_urls = ['http://amazon.in/'+link[0]+'&pageNumber={}'.format(i) for i in range(1,n)]
 
     def parse(self, response):
