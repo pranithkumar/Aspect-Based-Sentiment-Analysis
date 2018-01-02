@@ -27,6 +27,7 @@
             {% for i in range(0,10)%}
             <h3>Title: </h3> <div>{{review["title"][i]}}</div>
             <h3>Name: </h3> <div>{{review["reviewer"][i]}}</div>
+            <h3>Rating: </h3> <div>{{review["rating"][i]}}</div>
             <h3>Date: </h3> <div>{{review["date"][i]}}</div>
             <h3>Review: </h3> <div>{{review["review"][i]}}</div>
             <hr class="hr-primary" />
@@ -37,6 +38,7 @@
             {% for review in FlipkartReviews %}
             <h3>Title: </h3> <div>{{review["title"]}}</div>
             <h3>Name: </h3> <div>{{review["reviewer"]}}</div>
+            <h3>Rating: </h3> <div>{{review["rating"]}}</div>
             <h3>Date: </h3> <div>{{review["date"]}}</div>
             <h3>Review: </h3> <div>{{review["review"]}}</div>
             <hr class="hr-primary" />
