@@ -15,11 +15,11 @@ class CompleteamazonscraperSpider(scrapy.Spider):
 
     def parse(self, response):
         htmlreview = response.xpath('//span[contains(@class,"a-size-base review-text")]').extract()
-        date = response.xpath('//span[contains(@class,"a-size-base a-color-secondary review-date")]/text()').extract()
+        date = response.xpath('//span[contains(@data-hook,"review-date")]/text()').extract()
         reviewer = response.xpath('//a[contains(@class,"a-size-base a-link-normal author")]/text()').extract()
         title = response.xpath('//a[contains(@class,"a-size-base a-link-normal review-title a-color-base a-text-bold")]/text()').extract()
         verification = response.xpath('//span[contains(@class,"a-size-mini a-color-state a-text-bold")]/text()').extract()
-        rating = response.xpath('//span[contains(@class,"a-icon-alt")]/text()').extract()
+        rating = response.xpath('//div[contains(@class,"a-row")]/a[contains(@class,"a-link-normal")]/@title').extract()
         converter = html2text.HTML2Text()
         converter.ignore_links = True
         review=[]
