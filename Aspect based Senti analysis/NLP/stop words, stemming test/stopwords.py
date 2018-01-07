@@ -1,3 +1,4 @@
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer, WordNetLemmatizer
@@ -11,8 +12,13 @@ for w in word_tokens:
     if w not in stop_words:
         filtered_sentence.append(w)
 
+result=''
+for w in filtered_sentence:
+	result+=' '+w
+
 print(word_tokens)
 print(filtered_sentence)
+print(result[1:])
 
 stemmer = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
@@ -22,3 +28,5 @@ for sentence in filtered_sentence:
 
 for sentence in filtered_sentence:
     print("lemma %s: %s" % (sentence,lemmatizer.lemmatize(sentence, pos='v')))
+
+print nltk.pos_tag(word_tokens)
