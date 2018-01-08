@@ -1,0 +1,1 @@
+[('CASE', 3), ('PHONE', 3), ('', 1), ('MOTO X PLAY', 1), ('DEVICE', 1), ('LOOK', 1), ('BELOW LINK', 1), ('VARIANT', 1), ('DAMAGE', 1), ('MOTO X', 1), ('PROTECTION', 1), ('DAMN', 1), ('BEND', 1), ('CHEVRON', 1), ('BLUR', 1), ('OUTER SURFACE', 1), ('CHOICE', 1), ('PHONE LOOK BULKY', 1), ('DISPLAY', 1), ('PREFERENCE', 1)]
