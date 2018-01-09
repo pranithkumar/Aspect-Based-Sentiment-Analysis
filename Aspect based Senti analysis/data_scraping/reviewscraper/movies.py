@@ -5,6 +5,7 @@ import ast
 import os
 import sys
 import time
+import os.path
 
 app = Flask(__name__, template_folder='.')
 
@@ -27,6 +28,8 @@ def success(name):
     titlesflipkart = f.read()
     f.close()
     titleflipkart=titlesflipkart.split('/')[1]
+    if os.path.exists("data/flipkart/"+titleflipkart+".json"):
+        os.system("rm data/flipkart/"+titleflipkart+".json")
     os.system("scrapy crawl completeflipkartscraper -o data/flipkart/"+titleflipkart+".json")
     os.system("scrapy crawl searchspideramazon")
     os.system("scrapy crawl getproductspideramazon")
@@ -34,6 +37,8 @@ def success(name):
     titlesamazon = f.read()
     f.close()
     titleamazon=titlesamazon.split('/')[1]
+    if os.path.exists("data/amazon/"+titleamazon+".json"):
+        os.system("rm data/amazon/"+titleamazon+".json")
     os.system("scrapy crawl completeamazonscraper -o data/amazon/"+titleamazon+".json")
     return render_template('review.html', AmazonReviews=json.load(open("data/amazon/"+titleamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+titleflipkart+".json")))
 
