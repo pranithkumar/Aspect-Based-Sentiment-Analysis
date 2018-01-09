@@ -26,21 +26,21 @@ print model['Camera']"""
 
 model = models.Word2Vec(reviews)
 model.save('model.bin')
-#print model['mobile']
-#print model['guitar']
+print model['mobile']
+print model['guitar']
 words = list(model.wv.vocab)
-print model.most_similar('camera')
+#print model.most_similar('camera')
 
-"""X = model[model.wv.vocab]
+X = model[model.wv.vocab]
 pca = PCA(n_components=2)
 result = pca.fit_transform(X)
-pyplot.scatter(result[:, 0], result[:, 1])
+"""pyplot.scatter(result[:, 0], result[:, 1])
 for i, word in enumerate(words):
 	pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
 pyplot.show()"""
 
 
-"""points=[]
+points=[]
 for i, word in enumerate(words):
 	points.append(word)
 
@@ -48,4 +48,4 @@ trace1 = go.Scatter(x=result[:,0], y=result[:,1], marker={"color": "blue", "size
 data=go.Data([trace1])
 layout=go.Layout(title="Word2Vec Plot", xaxis={'title':'dim 1'}, yaxis={'title':'dim 2'})
 figure=go.Figure(data=data,layout=layout)
-py.plot(figure, filename='pyguide_1.html')"""
+py.plot(figure, filename='pyguide_1.html')
