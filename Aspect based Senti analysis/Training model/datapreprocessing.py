@@ -67,4 +67,5 @@ def preprocess(data):
 	return pandas.DataFrame(result)
 
 df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
+#print df['review']
 print preprocess(df).to_json("preprocessing.txt",orient='records')
