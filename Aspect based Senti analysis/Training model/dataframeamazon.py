@@ -10,4 +10,6 @@ for i in range(0,len(reviews_list)):
 for i in range(0,len(reviews_list)):
 	df = df.append(pandas.DataFrame(reviews_list[i]),ignore_index=True)
 
-print df
+#print df
+f = open("rev_amazon.txt","w")
+f.write(df.reviews)
