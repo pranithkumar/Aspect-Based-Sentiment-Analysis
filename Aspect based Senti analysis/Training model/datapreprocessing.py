@@ -68,4 +68,40 @@ def preprocess(data):
 
 df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
 #print df['review']
-print preprocess(df).to_json("preprocessing.txt",orient='records')
+#df_pp = preprocess(df).to_json("preprocessing.txt",orient='records')
+
+df_pp = preprocess(df)
+#print df_pp['pos']
+
+nouns_dictionary = {}
+
+def count_postagged_nouns(df_pp):
+	for index, row in df_pp.iterrows():
+		temp_list = row['pos']
+		for i in temp_list:
+			print str(i[0][0])
+			#print i[0][1]
+			if i[0][1] is 'NN':
+				if str(i[0][0]) in nouns_dictionary:
+					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+				else:
+					nouns_dictionary[str(i[0][0])] = 1
+			elif i[0][1] is 'NNP':
+				if str(i[0][0]) in nouns_dictionary:
+					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+				else:
+					nouns_dictionary[str(i[0][0])] = 1
+			elif i[0][1] is 'NNPS':
+				if str(i[0][0]) in nouns_dictionary:
+					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+				else:
+					nouns_dictionary[str(i[0][0])] = 1
+			elif i[0][1] is 'NNS':
+				if str(i[0][0]) in nouns_dictionary:
+					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+				else:
+					nouns_dictionary[str(i[0][0])] = 1
+			else:
+				continue
+
+print nouns_dictionary.keys()
