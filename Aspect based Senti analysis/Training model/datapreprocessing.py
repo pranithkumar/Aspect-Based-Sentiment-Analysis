@@ -41,7 +41,8 @@ def preprocess(data):
 	stemmer = PorterStemmer()
 	lemmatizer = WordNetLemmatizer()
 	count = 0
-	for review in data['review']:
+	for review in data['reviewText']:
+		print str(count)+'\t'+review
 		result.append({'stprmv':[],'stem':[],'lemma':[],'pos':[]})
 		word_tokens = word_tokenize(review)
 		filtered_sentence = [w for w in word_tokens if not w in stop_words]
@@ -66,10 +67,21 @@ def preprocess(data):
 		count += 1
 	return pandas.DataFrame(result)
 
-df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
+#df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
 #print df['review']
 #df_pp = preprocess(df).to_json("preprocessing.txt",orient='records')
 
+reviews_list = json.load(open("Cell_Phones_and_Accessories_5.json","r"))
+for i in range(0,len(reviews_list)):
+	reviews_list[i].pop('reviewerID')
+	reviews_list[i].pop('asin')
+	reviews_list[i].pop('helpful')
+	reviews_list[i].pop('unixReviewTime')
+	reviews_list[i].pop('reviewTime')
+
+df = pandas.DataFrame(reviews_list)
+del df['reviewerName']
+print df['reviewText']
 df_pp = preprocess(df)
 #print df_pp['pos']
 
@@ -78,30 +90,32 @@ nouns_dictionary = {}
 def count_postagged_nouns(df_pp):
 	for index, row in df_pp.iterrows():
 		temp_list = row['pos']
+		temp_list = temp_list[0]
 		for i in temp_list:
-			print str(i[0][0])
+			#print str(i[0][0])
 			#print i[0][1]
-			if i[0][1] is 'NN':
-				if str(i[0][0]) in nouns_dictionary:
-					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+			if i[1] == 'NN':
+				if str(i[0].encode('utf-8')) in nouns_dictionary:
+					nouns_dictionary[str(i[0].encode('utf-8'))] = nouns_dictionary[str(i[0].encode('utf-8'))] + 1
 				else:
-					nouns_dictionary[str(i[0][0])] = 1
-			elif i[0][1] is 'NNP':
-				if str(i[0][0]) in nouns_dictionary:
-					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+					nouns_dictionary[str(i[0].encode('utf-8'))] = 1
+			elif i[1] == 'NNP':
+				if str(i[0].encode('utf-8')) in nouns_dictionary:
+					nouns_dictionary[str(i[0].encode('utf-8'))] = nouns_dictionary[str(i[0].encode('utf-8'))] + 1
 				else:
-					nouns_dictionary[str(i[0][0])] = 1
-			elif i[0][1] is 'NNPS':
-				if str(i[0][0]) in nouns_dictionary:
-					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+					nouns_dictionary[str(i[0].encode('utf-8'))] = 1
+			elif i[1] == 'NNPS':
+				if str(i[0].encode('utf-8')) in nouns_dictionary:
+					nouns_dictionary[str(i[0].encode('utf-8'))] = nouns_dictionary[str(i[0].encode('utf-8'))] + 1
 				else:
-					nouns_dictionary[str(i[0][0])] = 1
-			elif i[0][1] is 'NNS':
-				if str(i[0][0]) in nouns_dictionary:
-					nouns_dictionary[str(i[0][0])] = nouns_dictionary[str(i[0][0])] + 1
+					nouns_dictionary[str(i[0].encode('utf-8'))] = 1
+			elif i[1] == 'NNS':
+				if str(i[0].encode('utf-8')) in nouns_dictionary:
+					nouns_dictionary[str(i[0].encode('utf-8'))] = nouns_dictionary[str(i[0].encode('utf-8'))] + 1
 				else:
-					nouns_dictionary[str(i[0][0])] = 1
+					nouns_dictionary[str(i[0].encode('utf-8'))] = 1
 			else:
 				continue
 
-print nouns_dictionary.keys()
+count_postagged_nouns(df_pp)
+print nouns_dictionary
