@@ -1,3 +1,0 @@
-Problem statement:
-
-The goal of this project is to capture real time costumer reviews and identify opinions expressed about specific entities(ex: smart phones) and therir aspects(ex: price, camera, performance..).
