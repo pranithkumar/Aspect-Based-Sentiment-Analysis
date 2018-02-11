@@ -104,7 +104,7 @@ def count_postagged_nouns(df_pp):
 	return nouns_dictionary
 
 def read_amazondata():
-	df = pandas.read_json("Amazon_reviews_only.json")
+	df = pandas.read_json("~/Documents/Amazon_reviews_only.json")
 	#df = pandas.read_json("test.json")
 	return df
 
