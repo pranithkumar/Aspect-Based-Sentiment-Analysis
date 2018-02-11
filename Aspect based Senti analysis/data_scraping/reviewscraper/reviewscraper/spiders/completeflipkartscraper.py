@@ -13,7 +13,7 @@ class CompleteflipkartscraperSpider(scrapy.Spider):
 		f=open("productlinkflipkart.txt","r")
 		link=f.read()
 		links=link.split("\n")
-		temp=links[0].split("?")
+		temp=links[1].split("?")
 		res=temp[1].split("&")
 		pid=res[0].split("=")[1]
 		n=50

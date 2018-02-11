@@ -10,7 +10,10 @@ class SearchspiderflipkartSpider(scrapy.Spider):
     start_urls = ["https://www.flipkart.com/search?q="+search_keyword+"&otracker=start&as-show=on&as=off"]
 
     def parse(self, response):
-        title = response.xpath('//a[contains(@rel,"noopener noreferrer")]/@href').extract()
+        titlename = response.xpath('//a[contains(@rel,"noopener noreferrer")]/div/div/div/div/img/@alt').extract()
+        if len(titlename) == 0:
+            titlename = response.xpath('//a[contains(@rel,"noopener noreferrer")]/text()').extract()    
+        titlelink = response.xpath('//a[contains(@rel,"noopener noreferrer")]/@href').extract()
     	f=open("productlinkflipkart.txt","w")
-    	for link in title:
-    		f.write(str(link)+"\n")
+    	for title in range(0,24):
+    		f.write(str(titlename[title])+"\n"+str(titlelink[title])+"\n")

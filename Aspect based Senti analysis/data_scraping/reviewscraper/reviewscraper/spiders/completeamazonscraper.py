@@ -11,7 +11,7 @@ class CompleteamazonscraperSpider(scrapy.Spider):
     contents=f.read()
     link=contents.split("\n")
     n=10
-    start_urls = ['http://amazon.in/'+link[0]+'&pageNumber={}'.format(i) for i in range(1,n)]
+    start_urls = ['http://amazon.in/'+link[1]+'&pageNumber={}'.format(i) for i in range(1,n)]
 
     def parse(self, response):
         htmlreview = response.xpath('//span[contains(@class,"a-size-base review-text")]').extract()

@@ -25,22 +25,22 @@ def success(name):
     f.close()
     os.system("scrapy crawl searchspiderflipkart")
     f = open('productlinkflipkart.txt','r')
-    titlesflipkart = f.read()
+    filenameflipkart = f.read()
     f.close()
-    titleflipkart=titlesflipkart.split('/')[1]
-    if os.path.exists("data/flipkart/"+titleflipkart+".json"):
-        os.system("rm data/flipkart/"+titleflipkart+".json")
-    os.system("scrapy crawl completeflipkartscraper -o data/flipkart/"+titleflipkart+".json")
+    fileflipkart=filenameflipkart.split('/')[1]
+    if os.path.exists("data/flipkart/"+fileflipkart+".json"):
+        os.system("rm data/flipkart/"+fileflipkart+".json")
+    os.system("scrapy crawl completeflipkartscraper -o data/flipkart/"+fileflipkart+".json")
     os.system("scrapy crawl searchspideramazon")
     os.system("scrapy crawl getproductspideramazon")
     f = open('productlinkamazon.txt','r')
-    titlesamazon = f.read()
+    filenameamazon = f.read()
     f.close()
-    titleamazon=titlesamazon.split('/')[1]
-    if os.path.exists("data/amazon/"+titleamazon+".json"):
-        os.system("rm data/amazon/"+titleamazon+".json")
-    os.system("scrapy crawl completeamazonscraper -o data/amazon/"+titleamazon+".json")
-    return render_template('review.html', AmazonReviews=json.load(open("data/amazon/"+titleamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+titleflipkart+".json")))
+    fileamazon=filenameamazon.split('/')[1]
+    if os.path.exists("data/amazon/"+fileamazon+".json"):
+        os.system("rm data/amazon/"+fileamazon+".json")
+    os.system("scrapy crawl completeamazonscraper -o data/amazon/"+fileamazon+".json")
+    return render_template('review.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
