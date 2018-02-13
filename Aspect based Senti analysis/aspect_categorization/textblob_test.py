@@ -16,13 +16,14 @@ train = [
 	]
 '''
 
-text = "i love the camera but baterry is bad"
+text = "i love the camera but baterry is bad. my boss is horrible."
 blob = TextBlob(text)
 print blob.tags
 print blob.noun_phrases
+print blob.sentences
 
 for sent in blob.sentences:
 	print sent.sentiment.polarity
 
 #cl = NaiveBayesClassifier(train)
-print cl.classify(text)
+#print cl.classify(text)
