@@ -12,26 +12,10 @@ def find_sub_list(sl,l):
 			result.append((ind,ind+sll-1))
 	return result
 
-patterns = [['JJ','NN','NN'],['JJ','NN','NNS'],['JJ','NNS','NN'],['JJ','NNS','NNS'],['RB','JJ','NN'],['RBR','JJ','NN'],['RBS','JJ','NN'],['RB','JJ','NNS'],['RBR','JJ','NNS'],['RBS','JJ','NNS'],['RB','RB','NN'],['RBR','RB','NN'],['RBS','RB','NN'],['RB','RB','NNS'],['RBR','RB','NNS'],['RBS','RB','NNS'],['RB','RBR','NN'],['RBR','RBR','NN'],['RBS','RBR','NN'],['RB','RBR','NNS'],['RBR','RBR','NNS'],['RBS','RBR','NNS'],['RB','RBS','NN'],['RBR','RBS','NN'],['RBS','RBS','NN'],['RB','RBS','NNS'],['RBR','RBS','NNS'],['RBS','RBS','NNS'],['JJ','NN'],['JJ','NNS'],['RB','JJ'],['RBR','JJ'],['RBS','JJ'],['RB','VBN'],['RBR','VBN'],['RBS','VBN'],['RB','VBD'],['RBR','VBD'],['RBS','VBD'],['VBN','NN'],['VBN','NNS'],['VBD','NN'],['VBD','NNS'],['VBN','RB'],['VBN','RBR'],['VBN','RBS'],['VBD','RB'],['VBD','RBR'],['VBD','RBS']]
-'''
-for review in amazontext['review']:
-	print "\n"+review
-	word_tokens = word_tokenize(review)
-	pos_tuples = nltk.pos_tag(word_tokens)
-	#print pos_tuples
-	pos =[]
-	for tag in pos_tuples:
-		pos.append(tag[1])
-	for pattern in patterns:
-		if find_sub_list(pattern,pos) != None:
-			parts = find_sub_list(pattern,pos)
-			for indices in parts:
-				#indices = find_sub_list(pattern,pos)
-				print pattern
-				#print indices
-				for i in range(int(indices[0]),int(indices[1])+1):
-					print pos_tuples[i]
-'''
+patterns1 = [['NN','NN','VBN','JJ'],['NN','NNS','VBN','JJ'],['NNS','NN','VBN','JJ'],['NNS','NNS','VBN','JJ'],['NN','NN','VBD','JJ'],['NN','NNS','VBD','JJ'],['NNS','NN','VBD','JJ'],['NNS','NNS','VBD','JJ'],['JJ','NN','NN'],['JJ','NN','NNS'],['JJ','NNS','NN'],['JJ','NNS','NNS'],['RB','JJ','NN'],['RBR','JJ','NN'],['RBS','JJ','NN'],['RB','JJ','NNS'],['RBR','JJ','NNS'],['RBS','JJ','NNS'],['RB','RB','NN'],['RBR','RB','NN'],['RBS','RB','NN'],['RB','RB','NNS'],['RBR','RB','NNS'],['RBS','RB','NNS'],['RB','RBR','NN'],['RBR','RBR','NN'],['RBS','RBR','NN'],['RB','RBR','NNS'],['RBR','RBR','NNS'],['RBS','RBR','NNS'],['RB','RBS','NN'],['RBR','RBS','NN'],['RBS','RBS','NN'],['RB','RBS','NNS'],['RBR','RBS','NNS'],['RBS','RBS','NNS'],['NN','VBZ','JJ'],['NNP','NN'],['JJ','NN'],['JJ','NNS'],['VBN','NN'],['VBN','NNS'],['VBD','NN'],['VBD','NNS']]
+
+patterns2 = [['RB','JJ'],['RBR','JJ'],['RBS','JJ'],['RB','VBN'],['RBR','VBN'],['RBS','VBN'],['RB','VBD'],['RBR','VBD'],['RBS','VBD'],['VBN','RB'],['VBN','RBR'],['VBN','RBS'],['VBD','RB'],['VBD','RBR'],['VBD','RBS']]
+
 for review in amazontext['review']:
 	print "\n"+review
 	lines = []
@@ -39,16 +23,40 @@ for review in amazontext['review']:
 	for line in lines:
 		word_tokens = word_tokenize(line)
 		pos_tuples = nltk.pos_tag(word_tokens)
-		print pos_tuples
+		#print pos_tuples
 		pos =[]
 		for tag in pos_tuples:
 			pos.append(tag[1])
-		for pattern in patterns:
+		for pattern in patterns1:
 			if find_sub_list(pattern,pos) != None:
 				parts = find_sub_list(pattern,pos)
 				for indices in parts:
 					#indices = find_sub_list(pattern,pos)
 					print pattern
+					#print indices
+					for i in range(int(indices[0]),int(indices[1])+1):
+						print pos_tuples[i]
+		for pattern in patterns2:
+			if find_sub_list(pattern,pos) != None:
+				parts = find_sub_list(pattern,pos)
+				nounlist = ['NN','NNS','NNP']
+				check_noun = {}
+				for indices in parts:
+					i = 0
+					for tag in pos_tuples:
+						if tag[1] in nounlist:
+							if i < parts[0][0]:
+								check_noun[i] = parts[0][0] - i
+							elif i > parts[0][1]:
+								check_noun[i] = i - parts[0][1]
+						i = i+1
+					if check_noun:
+						noun_index = min(check_noun.items(), key = lambda x: x[1])
+						print "considered"
+					#indices = find_sub_list(pattern,pos)
+					print pattern
+					if check_noun:
+						print pos_tuples[noun_index[0]]
 					#print indices
 					for i in range(int(indices[0]),int(indices[1])+1):
 						print pos_tuples[i]
