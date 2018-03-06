@@ -28,6 +28,7 @@ def success(name):
     f = open('input.txt','w')
     f.write(name)
     f.close()
+    os.chdir('/home/pranith/project/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/data_scraping/reviewscraper/')
     os.system("scrapy crawl searchspiderflipkart")
     f = open('productlinkflipkart.txt','r')
     #extracting filename of the json file to be stored from productlinkflipkart.txt

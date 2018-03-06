@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Mi Max 2 (Black, 64 GB)
 https://www.amazon.in/Mi-Max-Black-64-GB/dp/B073VLGL5Y
 Mi mayor tesoro: (para estudiantes de español, nivel A2) (Spanish Edition)
@@ -12,3 +13,37 @@ Charging & Data Cable USB Cable For High Speed Data Transfer Cable for ZTE Blade
 https://www.amazon.in/Charging-Cable-Speed-Transfer-Blade/dp/B079M6GGCP
 Charging & Data Cable USB Cable For High Speed Data Transfer Cable for Intex Aqua A2
 https://www.amazon.in/Charging-Cable-Speed-Transfer-Intex/dp/B079M8J4BD
+=======
+Honor 7X (Blue, 4GB RAM + 32GB memory)
+https://www.amazon.in/Honor-Blue-4GB-32GB-memory/dp/B0784BZ5VY
+Xiaomi Mi A1 (Black, 64 GB) (4 GB RAM)
+https://www.amazon.in/Xiaomi-Mi-A1-Black-RAM/dp/B076Q4KSSN
+Redmi Y1 (Gold, 64GB)
+https://www.amazon.in/Mi-Redmi-Y1-Gold-64GB/dp/B0756RCTKJ
+Redmi Note 4 (Dark Grey, 64GB)
+https://www.amazon.in/Redmi-Note-Dark-Grey-64GB/dp/B078BN2H39
+Amozo Camera Protection Auto Focus All Sides Protection Sleek Transparent Back Case Cover For Redmi Mi A1 / MI 5X (Black)
+https://www.amazon.in/Amozo-Protection-Transparent-A1-5X/dp/B078SL82GG
+Tarkan Royal Slim Flexible Soft Back Case Cover For Xiaomi Mi A1 - Android One [Matte Black] 360 Degree Coverage
+https://www.amazon.in/Tarkan-Royal-Flexible-Cover-Xiaomi/dp/B075NXCQNF
+Moto G5s Plus (Lunar Grey, 64GB)
+https://www.amazon.in/Moto-Plus-Lunar-Grey-64GB/dp/B071HWTHPH
+Mi Max 2 (Black, 64 GB)
+https://www.amazon.in/Mi-Max-Black-64-GB/dp/B073VLGL5Y
+OnePlus 5T (Midnight Black 6GB RAM + 64GB memory)
+https://www.amazon.in/OnePlus-Midnight-Black-64GB-memory/dp/B0756ZFXVB
+Dashmesh Shopping Shockproof Bumper Hybrid Back Cover Case For Xiaomi Mi A1 [Bumper Corners with Air Cushion Technology]
+https://www.amazon.in/Dashmesh-Shopping-Shockproof-Xiaomi-Mi/dp/B071ZH9HPZ
+Gionee A1 (Black, 64GB)
+https://www.amazon.in/Gionee-A1-Black-64GB/dp/B06XRMB66J
+CELLBELL Full Covered Tempered Glass Screen Protector For Xiaomi Mi A1- (Black) With Installation Kit
+https://www.amazon.in/CELLBELL-Protector-Xiaomi-Mi-Installation/dp/B076DSL6ZB
+MobileGlaze Type C Adapter For Xiaomi Mi A1 | Xiaomi Mi 5
+https://www.amazon.in/MobileGlaze-Type-Adapter-Xiaomi-Mi/dp/B07672B18L
+Nillkin Frosted Shield Ultra Thin Hard Plastic Back Cover Case For Xiaomi Mi A1 (5.5 inch)- Black
+https://www.amazon.in/Nillkin-Frosted-Case-Xiaomi-Black/dp/B075H94BD6
+Mobistyle Shockproof Slim TPU Back Case With Anti Dust Plugs And Logo Cut Cover For Xiaomi Mi A1 / Mi 5X (Black)
+https://www.amazon.in/Mobistyle-Shockproof-Plugs-Cover-Xiaomi/dp/B077N8ZBHR
+Kapaver Xiaomi Mi A1 Back Cover Case Premium Tough Rugged Solid Black Shock Proof Slim Armor Back Cover Case for Xiaomi Mi A1
+https://www.amazon.in/Kapaver-Xiaomi-Cover-Premium-Rugged/dp/B0778GNX1L
+>>>>>>> 76672f569a404070ddb2c921a2d1fc8e988ec2da
