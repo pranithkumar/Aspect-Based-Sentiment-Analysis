@@ -3,7 +3,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 #amazontext = pandas.read_json("~/Documents/Amazon_reviews_only.json")
-amazontext = pandas.read_json("mi-a1-black-64-gb.json")
+amazontext = pandas.read_json("apple-iphone-6-space-grey-32-gb.json")
 def find_sub_list(sl,l):
 	result = []
 	sll=len(sl)
@@ -103,4 +103,9 @@ for review in amazontext['review']:
 						aspects_dict[aspect[2:]] = {}
 						aspects_dict[aspect[2:]][entity[2:]] = 1
 
-pprint.pprint(aspects_dict)
+#pprint.pprint(aspects_dict)
+for k in sorted(aspects_dict, key=lambda k: len(aspects_dict[k]), reverse=True):
+	sot_list = sorted(aspects_dict[k], key=lambda ke: aspects_dict[k][ke], reverse = True)
+	for i in sot_list:
+		if aspects_dict[k][i] > 1:
+			print 'aspect: '+ k + ', entity:' + i + ', count: ' + str(aspects_dict[k][i])
