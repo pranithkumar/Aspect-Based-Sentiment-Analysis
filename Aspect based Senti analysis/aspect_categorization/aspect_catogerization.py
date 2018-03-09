@@ -56,14 +56,14 @@ for review in amazontext['review']:
 							if pos_tuples[i][0] not in stop_words:
 								entity = entity + ' ' + pos_tuples[i][0]
 						print pos_tuples[i]
-					if aspect[2:] in aspects_dict:
-						if entity[2:] in aspects_dict[aspect[2:]]:
-							aspects_dict[aspect[2:]][entity[2:]] += 1
+					if aspect[2:].encode('utf-8') in aspects_dict:
+						if entity[2:] in aspects_dict[aspect[2:].encode('utf-8')]:
+							aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] += 1
 						else:
-							aspects_dict[aspect[2:]][entity[2:]] = 1
+							aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] = 1
 					else:
-						aspects_dict[aspect[2:]] = {}
-						aspects_dict[aspect[2:]][entity[2:]] = 1
+						aspects_dict[aspect[2:].encode('utf-8')] = {}
+						aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] = 1
 		
 		for pattern in patterns2:
 			if find_sub_list(pattern,pos) != None:
@@ -94,14 +94,14 @@ for review in amazontext['review']:
 						if pos_tuples[i][0] not in stop_words:
 							entity = entity + ' ' + pos_tuples[i][0]
 						print pos_tuples[i]
-					if aspect[2:] in aspects_dict:
-						if entity[2:] in aspects_dict[aspect[2:]]:
-							aspects_dict[aspect[2:]][entity[2:]] += 1
+					if aspect[2:].encode('utf-8') in aspects_dict:
+						if entity[2:] in aspects_dict[aspect[2:].encode('utf-8')]:
+							aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] += 1
 						else:
-							aspects_dict[aspect[2:]][entity[2:]] = 1
+							aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] = 1
 					else:
-						aspects_dict[aspect[2:]] = {}
-						aspects_dict[aspect[2:]][entity[2:]] = 1
+						aspects_dict[aspect[2:].encode('utf-8')] = {}
+						aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] = 1
 
 #pprint.pprint(aspects_dict)
 for k in sorted(aspects_dict, key=lambda k: len(aspects_dict[k]), reverse=True):
@@ -109,3 +109,4 @@ for k in sorted(aspects_dict, key=lambda k: len(aspects_dict[k]), reverse=True):
 	for i in sot_list:
 		if aspects_dict[k][i] > 1:
 			print 'aspect: '+ k + ', entity:' + i + ', count: ' + str(aspects_dict[k][i])
+print aspects_dict.keys()
