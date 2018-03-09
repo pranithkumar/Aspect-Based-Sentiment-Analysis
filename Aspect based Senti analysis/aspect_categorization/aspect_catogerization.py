@@ -1,9 +1,12 @@
 import nltk,pandas,pprint,re
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+import datapreprocessing as dp
 
 #amazontext = pandas.read_json("~/Documents/Amazon_reviews_only.json")
-amazontext = pandas.read_json("apple-iphone-6-space-grey-32-gb.json")
+#amazontext = pandas.read_json("apple-iphone-6-space-grey-32-gb.json")
+reviews = dp.dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
+
 def find_sub_list(sl,l):
 	result = []
 	sll=len(sl)
@@ -19,11 +22,12 @@ patterns2 = [['RB','JJ'],['RBR','JJ'],['RBS','JJ'],['RB','VBN'],['RBR','VBN'],['
 aspects_dict = {}
 stop_words = set(stopwords.words('english'))
 
-for review in amazontext['review']:
+#for review in amazontext['review']:
+for review in reviews['review']:
 	review = review.lower()
 	res = ' '
 	for ch in review:
-		if not re.match('[a-zA-Z0-9_ ]',ch):
+		if not re.match('[a-zA-Z0-9_\' ]',ch):
 			res = res + ' ' + ch + ' '
 		else:
 			res = res + ch
@@ -102,6 +106,9 @@ for review in amazontext['review']:
 					else:
 						aspects_dict[aspect[2:].encode('utf-8')] = {}
 						aspects_dict[aspect[2:].encode('utf-8')][entity[2:]] = 1
+
+if '' in aspects_dict.keys():
+	aspects_dict.pop('',None)
 
 #pprint.pprint(aspects_dict)
 for k in sorted(aspects_dict, key=lambda k: len(aspects_dict[k]), reverse=True):

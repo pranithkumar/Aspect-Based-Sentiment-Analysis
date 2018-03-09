@@ -82,6 +82,6 @@ def preprocess(data):
 		count += 1
 	return pandas.DataFrame(result)
 
-df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
+#df = dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
 #print df['review']
-print preprocess(df).to_json("preprocessing.txt",orient='records')
+#print preprocess(df).to_json("preprocessing.txt",orient='records')
