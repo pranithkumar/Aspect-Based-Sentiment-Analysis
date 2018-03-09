@@ -1,6 +1,6 @@
 #This file runs a flask application that scrapes data from amazon and flipkart for specific products by executing scrapy spiders
 from flask import Flask, render_template, redirect, url_for, request
-import requests,json,os,sys,time,os.path,ast,string
+import requests,json,os,sys,time,os.path,ast,string,re
 
 app = Flask(__name__, template_folder='.')
 
@@ -33,7 +33,7 @@ def success(name):
     f.close()
     fileflipkart=filenameflipkart.split('/')[1]'''
     fileflipkart = name + '_flipkart'
-    fileflipkart = string.replace(fileflipkart,' ','_')
+    fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
 
     #check if the file already exists
     if os.path.exists("data/flipkart/"+fileflipkart+".json"):
@@ -51,7 +51,7 @@ def success(name):
     f.close()
     fileamazon=filenameamazon.split('/')[1]'''
     fileamazon = name + '_amazon'
-    fileamazon = string.replace(fileamazon,' ','_')
+    fileamazon = re.sub(r'[^a-zA-Z0-9]', "_", fileamazon)
 
     #check if the file already exists
     if os.path.exists("data/amazon/"+fileamazon+".json"):
