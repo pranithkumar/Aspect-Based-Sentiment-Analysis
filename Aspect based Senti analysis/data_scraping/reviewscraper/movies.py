@@ -1,12 +1,6 @@
 #This file runs a flask application that scrapes data from amazon and flipkart for specific products by executing scrapy spiders
 from flask import Flask, render_template, redirect, url_for, request
-import requests
-import json
-import ast
-import os
-import sys
-import time
-import os.path
+import requests,json,os,sys,time,os.path,ast,string
 
 app = Flask(__name__, template_folder='.')
 
@@ -28,28 +22,43 @@ def success(name):
     f = open('input.txt','w')
     f.write(name)
     f.close()
+
     os.chdir('/home/pranith/project/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/data_scraping/reviewscraper/')
+
     os.system("scrapy crawl searchspiderflipkart")
-    f = open('productlinkflipkart.txt','r')
+
     #extracting filename of the json file to be stored from productlinkflipkart.txt
+    '''f = open('productlinkflipkart.txt','r')
     filenameflipkart = f.read()
     f.close()
-    fileflipkart=filenameflipkart.split('/')[1]
+    fileflipkart=filenameflipkart.split('/')[1]'''
+    fileflipkart = name + '_flipkart'
+    fileflipkart = string.replace(fileflipkart,' ','_')
+
     #check if the file already exists
     if os.path.exists("data/flipkart/"+fileflipkart+".json"):
         os.system("rm data/flipkart/"+fileflipkart+".json")
+
     os.system("scrapy crawl completeflipkartscraper -o data/flipkart/"+fileflipkart+".json")
+
     os.system("scrapy crawl searchspideramazon")
+
     os.system("scrapy crawl getproductspideramazon")
-    f = open('productlinkamazon.txt','r')
+
     #extracting filename of the json file to be stored from productlinkamazon.txt
+    '''f = open('productlinkamazon.txt','r')
     filenameamazon = f.read()
     f.close()
-    fileamazon=filenameamazon.split('/')[1]
+    fileamazon=filenameamazon.split('/')[1]'''
+    fileamazon = name + '_amazon'
+    fileamazon = string.replace(fileamazon,' ','_')
+
     #check if the file already exists
     if os.path.exists("data/amazon/"+fileamazon+".json"):
         os.system("rm data/amazon/"+fileamazon+".json")
+
     os.system("scrapy crawl completeamazonscraper -o data/amazon/"+fileamazon+".json")
+
     #rendering data from files to the html output
     return render_template('review.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")))
 

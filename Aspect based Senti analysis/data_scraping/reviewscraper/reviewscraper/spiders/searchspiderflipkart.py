@@ -21,5 +21,5 @@ class SearchspiderflipkartSpider(scrapy.Spider):
         titlelink = response.xpath('//a[contains(@rel,"noopener noreferrer")]/@href').extract()
         #storing the titles and product links of search results in output.txt
     	f=open("productlinkflipkart.txt","w")
-    	for title in range(0,24):
+    	for title in range(0,len(titlename)):
     		f.write(str(titlename[title])+"\n"+str(titlelink[title])+"\n")

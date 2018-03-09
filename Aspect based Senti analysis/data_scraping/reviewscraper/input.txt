@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-mi a2
-=======
-mi a1
->>>>>>> 76672f569a404070ddb2c921a2d1fc8e988ec2da
+macbook pro

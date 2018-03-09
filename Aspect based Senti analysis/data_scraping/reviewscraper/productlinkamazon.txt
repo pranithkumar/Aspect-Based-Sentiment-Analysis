@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-Mi Max 2 (Black, 64 GB)
-/Mi-Max-Black-64-GB/product-reviews/B073VLGL5Y/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
-3219
-=======
-Honor 7X (Blue, 4GB RAM + 32GB memory)
-/Honor-Blue-4GB-32GB-memory/product-reviews/B0784BZ5VY/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews
-7919
->>>>>>> 76672f569a404070ddb2c921a2d1fc8e988ec2da
+Apple MacBook Air MQD32HN/A 13.3-inch Laptop 2017 (Core i5/8GB/128GB/MacOS Sierra/Integrated Graphics)
+/Apple-MacBook-Air-13-3-inch-Integrated/product-reviews/B073Q5R6VR?reviewerType=all_reviews
+732
