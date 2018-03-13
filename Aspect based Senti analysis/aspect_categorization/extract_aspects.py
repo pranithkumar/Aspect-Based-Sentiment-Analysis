@@ -89,6 +89,18 @@ def aspects_from_tagged_sents(tagged_sentences):
 	# list of tuples of form (noun, count)
 	return [noun for noun, _ in noun_counter.most_common(10)]
 
+def entities_from_tagged_sents(tagged_sentences):
+	STOPWORDS = set(stopwords.words('english'))
+
+	# find the most common nouns in the sentences
+	ent_counter = Counter()
+
+	for sent in tagged_sentences:
+		if sent[1] in ['JJ','RB','RBR','RBS','VBN','VBD'] and sent[0] not in STOPWORDS:
+			ent_counter[sent[0]] += 1
+
+	# list of tuples of form (noun, count)
+	return [ent for ent, _ in ent_counter.most_common(10)]
 
 def demo_aspect_extraction(): 
 	"""

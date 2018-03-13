@@ -2,6 +2,7 @@ import nltk,pandas,pprint,re
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import datapreprocessing as dp
+from textblob import TextBlob
 
 #To give a file explicitly
 #amazontext = pandas.read_json("~/Documents/Amazon_reviews_only.json")
@@ -26,7 +27,7 @@ patterns1 = [['NN','NN','VBN','JJ'],['NN','NNS','VBN','JJ'],['NNS','NN','VBN','J
 patterns2 = [['RB','JJ'],['RBR','JJ'],['RBS','JJ'],['RB','VBN'],['RBR','VBN'],['RBS','VBN'],['RB','VBD'],['RBR','VBD'],['RBS','VBD'],['VBN','RB'],['VBN','RBR'],['VBN','RBS'],['VBD','RB'],['VBD','RBR'],['VBD','RBS']]
 
 #initnalizing the aspects dictionary
-aspects_dict = {}
+aspects_dict = {'camera':{},'camera quality':{},'battery':{},'price':{}}
 
 #extracting stopwords
 stop_words = set(stopwords.words('english'))
@@ -141,9 +142,13 @@ if '' in aspects_dict.keys():
 
 #pprint.pprint(aspects_dict)
 #sorting based on size of value of aspects dictionary and printing the top 10
+print "\n\n\nAspect\t\t\tEntity\t\t\tCount\t\t\tSentiment"
 for k in sorted(aspects_dict, key=lambda k: len(aspects_dict[k]), reverse=True):
 	sot_list = sorted(aspects_dict[k], key=lambda ke: aspects_dict[k][ke], reverse = True)
 	for i in sot_list:
 		if aspects_dict[k][i] > 1:
-			print 'aspect: '+ k + ', entity:' + i + ', count: ' + str(aspects_dict[k][i])
-print aspects_dict.keys()
+			wrd = i+' '+k
+			#getting sentiment
+			txt = TextBlob(wrd)
+			print k + '\t\t\t' + i + '\t\t\t' + str(aspects_dict[k][i]) + '\t\t\t' + str(txt.sentiment.polarity)
+#print aspects_dict.keys()
