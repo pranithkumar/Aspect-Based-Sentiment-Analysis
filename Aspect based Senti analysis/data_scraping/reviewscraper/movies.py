@@ -23,8 +23,6 @@ def success(name):
     f.write(name)
     f.close()
 
-    os.chdir('/home/pranith/project/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/data_scraping/reviewscraper/')
-
     os.system("scrapy crawl searchspiderflipkart")
 
     #extracting filename of the json file to be stored from productlinkflipkart.txt

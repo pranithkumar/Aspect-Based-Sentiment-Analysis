@@ -7,10 +7,9 @@ from textblob import TextBlob
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
+STOPWORDS = set(stopwords.words('english'))
 
 def aspects_from_tagged_sents(tagged_sentences):
-
-	STOPWORDS = set(stopwords.words('english'))
 
 	# find the most common nouns in the sentences
 	asp_ent_pair = {}
@@ -36,9 +35,18 @@ def aspects_from_tagged_sents(tagged_sentences):
 	return asp_ent_pair
 
 
-def get_aspects(Amazon,Flipkart):
+def get_aspects(Amazon,Flipkart,input_text):
+
+	if input_text not in STOPWORDS:
+		STOPWORDS.add(input_text)
+
+	skip_words = input_text.split(' ')
+	for word in skip_words:
+		if word not in STOPWORDS:
+			STOPWORDS.add(word)
+
 	#Using preprocessed text for categorization
-	reviews = dp.dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
+	reviews = dp.dataframecomplete(Amazon,Flipkart)
 
 	#initnalizing the aspects dictionary
 	aspects_dict = {}
