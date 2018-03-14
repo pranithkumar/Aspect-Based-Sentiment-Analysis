@@ -3,6 +3,7 @@ from extract_aspects_mine import *
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import nltk,pandas,re,pprint,sys
+from textblob import TextBlob
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -120,7 +121,15 @@ for review in reviews['review']:
 			else:
 				aspects_dict[asp] = aspects_data[asp]
 		
-		print aspects_dict
+		#print aspects_dict
+i = 0
+print '\n\n\n\n\n\n\n\n\n\n'
 
-'''for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
-    print "%s: %s" % (key, value)'''
+for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
+	if i < 15:
+	    print "%s :" % (key)
+	    for ke in aspects_dict[key].keys():
+	    	wrd = key + ' ' + ke
+	    	txt = TextBlob(wrd)
+	    	print "text :" + wrd + "\t\t\tsentiment: " + str(txt.sentiment.polarity)
+	    i=i+1
