@@ -11,7 +11,6 @@ def aspects_from_tagged_sents(tagged_sentences):
 	"""
 	INPUT: list of lists of strings
 	OUTPUT: list of aspects
-
 	Given a list of tokenized and pos_tagged sentences from reviews
 	about a given restaurant, return the most common aspects
 	"""
@@ -110,17 +109,18 @@ for review in reviews['review']:
 
 		print "aspects and entities :"
 		print aspects_data
-
-		'''if aspects_data[0][0] in aspects_dict:
-			if ent in aspects_dict[aspects_data[0][0]]:
-				aspects_dict[aspects_data[0][0]][aspects_data[1][0]] += 1
-			else:
-				aspects_dict[data[0][0]][aspects_data[1][0]] = 0
-		else:
-			aspects_dict[aspects_data[0][0]] = {}
-			aspects_dict[aspects_data[0][0]][aspects_data[1][0]] = 0
 		
-		print aspects_dict'''
+		for asp in aspects_data:
+			if asp in aspects_dict:
+				for ent in aspects_data[asp]:
+					if ent in aspects_dict[asp]:
+						aspects_dict[asp][ent] += 1
+					else:
+						aspects_dict[asp][ent] = 1
+			else:
+				aspects_dict[asp] = aspects_data[asp]
+		
+		print aspects_dict
 
 '''for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
     print "%s: %s" % (key, value)'''
