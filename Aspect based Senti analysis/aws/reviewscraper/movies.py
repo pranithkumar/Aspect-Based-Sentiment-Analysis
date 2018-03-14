@@ -2,6 +2,7 @@
 #This file runs a flask application that scrapes data from amazon and flipkart for specific products by executing scrapy spiders
 from flask import Flask, render_template, redirect, url_for, request
 import requests,json,os,sys,time,os.path,ast,string,re
+from final_aspect_entity_extraction import *
 
 app = Flask(__name__, template_folder='.')
 
@@ -71,7 +72,7 @@ def success(name):
     os.system("scrapy crawl completeamazonscraper -o data/amazon/"+fileamazon+".json")
 
     get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
-    
+
     #rendering data from files to the html output
     #print "step 11"
     return render_template('review.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/reviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/reviewscraper/data/flipkart/"+fileflipkart+".json")))
