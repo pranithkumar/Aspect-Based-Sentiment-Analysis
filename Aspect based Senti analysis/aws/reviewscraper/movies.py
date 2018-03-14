@@ -70,6 +70,8 @@ def success(name):
     #print "step 10"
     os.system("scrapy crawl completeamazonscraper -o data/amazon/"+fileamazon+".json")
 
+    get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
+    
     #rendering data from files to the html output
     #print "step 11"
     return render_template('review.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/reviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/reviewscraper/data/flipkart/"+fileflipkart+".json")))
