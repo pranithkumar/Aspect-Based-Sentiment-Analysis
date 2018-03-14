@@ -26,12 +26,12 @@ def patterns(pos_tuples):
 					print pattern
 					#print indices
 					
-					for i in range(int(indices[0]),int(indices[1])+1):
-						print pos_tuples[i]
- 					
+					#for i in range(int(indices[0]),int(indices[1])+1):
+					#	print pos_tuples[i][0].encode('utf-8')
+ 					pattern_text = ' '.join(pos_tuples[i][0].encode('utf-8') for i in range(int(indices[0]),int(indices[1])+1))
  					#pattern_text = ' '.join(e.encode('utf-8') for e in pos_tuples[int(indices[0]): int(indices[1])+1][1])
- 					#pattern_snips.append(pattern_text)
- 					#print pattern_text
+ 					pattern_snips.append(pattern_text)
+ 					print pattern_text
  	return pattern_snips
 
 #main code
@@ -56,6 +56,8 @@ for review in reviews['review']:
 	print "pos tag: " 
 	print pos_tagged_data
 
+	pat = patterns(pos_tagged_data)
+
 	final_aspects = []
 	final_entities = []
 	print "aspects :"
@@ -74,7 +76,7 @@ for review in reviews['review']:
 		if re.match('[a-zA-Z0-9_\' -!=:?;@]',ent):
 			final_entities.append(ent)
 	print final_entities
-'''
+
 i = 0
 #pprint.pprint(aspects_dict)
 for k in sorted(aspects_dict.items(), key=lambda x:x[1], reverse=True):
@@ -87,4 +89,3 @@ for k in sorted(aspects_dict.items(), key=lambda x:x[1], reverse=True):
 
 # mining entities from aspects
 aspects_dict = {a:[] for a in aspects_top}
-'''
