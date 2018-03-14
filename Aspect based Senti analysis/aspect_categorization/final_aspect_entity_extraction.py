@@ -122,7 +122,7 @@ for review in reviews['review']:
 				aspects_dict[asp] = aspects_data[asp]
 		
 		#print aspects_dict
-i = 0
+'''i = 0
 print '\n\n\n\n\n\n\n\n\n\n'
 
 for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
@@ -132,4 +132,4 @@ for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),rever
 	    	wrd = key + ' ' + ke
 	    	txt = TextBlob(wrd)
 	    	print "text :" + wrd + "\t\t\tsentiment: " + str(txt.sentiment.polarity)
-	    i=i+1
+	    i=i+1'''
