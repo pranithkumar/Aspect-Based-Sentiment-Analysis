@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder='.')
 #defining the homepage
 @app.route('/')
 def homepage():
-    return render_template('movies.html')
+    return render_template('index.html')
 
 #taking the search keyword as input
 @app.route('/test',methods = ['POST', 'GET'])
