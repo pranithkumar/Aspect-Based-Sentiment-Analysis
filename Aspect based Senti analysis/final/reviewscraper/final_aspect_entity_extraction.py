@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 import nltk,pandas,re,pprint,sys
 from textblob import TextBlob
 
-reload(sys)  
+reload(sys)
 sys.setdefaultencoding('utf8')
 STOPWORDS = set(stopwords.words('english'))
 
@@ -76,7 +76,7 @@ def get_aspects(Amazon,Flipkart,input_text):
 		for word,pos in pos_tuples:
 			if pos == 'CC':
 				split_words.append(word)
-		
+
 		#print "word tokens:"
 		#print word_tokens
 		#print "pos tuples:"
@@ -104,19 +104,19 @@ def get_aspects(Amazon,Flipkart,input_text):
 
 			#print "tokenized_data:"
 			#print tokenized_data
-			
+
 			pos_tagged_data = pos_tag(tokenized_data)
-			
+
 			#print "pos_tagged_data:"
 			#print pos_tagged_data
-			
+
 			final_aspects = {}
-			
+
 			aspects_data = aspects_from_tagged_sents(pos_tagged_data)
 
 			print "aspects and entities :"
 			print aspects_data
-			
+
 			for asp in aspects_data:
 				if asp in aspects_dict:
 					for ent in aspects_data[asp]:
@@ -126,7 +126,7 @@ def get_aspects(Amazon,Flipkart,input_text):
 							aspects_dict[asp][ent] = 1
 				else:
 					aspects_dict[asp] = aspects_data[asp]
-		i +=1	
+		i +=1
 	pprint.pprint(aspects_dict)
 	i = 0
 	print '\n\n\n\n\n\n\n\n\n\n'
@@ -139,3 +139,4 @@ def get_aspects(Amazon,Flipkart,input_text):
 		    	#txt = TextBlob(wrd)
 		    	#print "text :" + wrd + "\t\t\tsentiment: " + str(txt.sentiment.polarity)
 		    i=i+1
+	return aspects_dict
