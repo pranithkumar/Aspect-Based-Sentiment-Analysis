@@ -1,7 +1,8 @@
 #This file runs a flask application that scrapes data from amazon and flipkart for specific products by executing scrapy spiders
 from flask import Flask, render_template, redirect, url_for, request
-import requests,json,os,sys,time,os.path,ast,string,re
+import requests,json,os,sys,time,os.path,ast,string,re,numpy
 from final_aspect_entity_extraction import *
+from textblob import TextBlob
 
 app = Flask(__name__, template_folder='.')
 
@@ -38,10 +39,22 @@ def success(name):
 
     os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
 
-    get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
+    aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
+
+    aspects_list = {}
+    i=0
+    for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
+        if i < 15:
+            sent_score=[]
+            for ke in aspects_dict[key].keys():
+                wrd = key + ' ' + ke
+                txt = TextBlob(wrd)
+                sent_score.append(txt.sentiment.polarity)
+            aspects_list[key.encode('utf-8')] = numpy.mean(sent_score)
+            i=i+1
 
     #rendering data from files to the html output
-    return render_template('review.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")))
+    return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

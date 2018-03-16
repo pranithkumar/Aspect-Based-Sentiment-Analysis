@@ -139,3 +139,4 @@ def get_aspects(Amazon,Flipkart,input_text):
 		    	#txt = TextBlob(wrd)
 		    	#print "text :" + wrd + "\t\t\tsentiment: " + str(txt.sentiment.polarity)
 		    i=i+1
+	return aspects_dict
