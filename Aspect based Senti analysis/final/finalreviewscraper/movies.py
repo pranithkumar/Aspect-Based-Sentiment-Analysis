@@ -6,16 +6,23 @@ from textblob import TextBlob
 
 app = Flask(__name__, template_folder='.')
 
+aspects_list = {}
+aspects_top = []
+
 #defining the homepage
 @app.route('/')
 def homepage():
-    return render_template('movies.html')
+    return render_template('index.html')
 
 #taking the search keyword as input
 @app.route('/test',methods = ['POST', 'GET'])
 def login():
     user = request.args.get('nm')
     return redirect(url_for('success',name = user))
+
+@app.route('/chart')
+def chart():
+    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
 
 #function that executes the spiders and stores the output in json files
 @app.route('/success/<name>')
@@ -41,10 +48,10 @@ def success(name):
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
-    aspects_list = {}
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:
+            aspects_top.append((key.encode('utf-8'),len(value)))
             sent_score=[]
             for ke in aspects_dict[key].keys():
                 wrd = key + ' ' + ke
@@ -53,8 +60,10 @@ def success(name):
             aspects_list[key.encode('utf-8')] = numpy.mean(sent_score)
             i=i+1
 
+    FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json"))
+
     #rendering data from files to the html output
-    return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values())
+    return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.dumps(FlipkartReviews), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
