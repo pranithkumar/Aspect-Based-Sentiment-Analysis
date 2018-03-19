@@ -53,6 +53,7 @@ def success(name):
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:
+            aspects_top.append((key.encode('utf-8'),len(value)))
             sent_score=[]
             for ke in aspects_dict[key].keys():
                 wrd = key + ' ' + ke
@@ -65,7 +66,8 @@ def success(name):
 
     #rendering data from files to the html output
     #return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values())
-    return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.dumps(FlipkartReviews), labels=aspects_list.keys(), values=aspects_list.values())
+    return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.dumps(FlipkartReviews), labels=aspects_list.keys(), values=aspects_list.values(),aspects=aspects_top)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    #app.run(host='0.0.0.0', debug=True)
+    app.run()
