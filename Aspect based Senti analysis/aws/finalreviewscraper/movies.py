@@ -12,7 +12,7 @@ aspects_top = []
 #defining the homepage
 @app.route('/')
 def homepage():
-    return render_template('movies.html')
+    return render_template('index.html')
 
 @app.route('/chart')
 def chart():
@@ -50,7 +50,6 @@ def success(name):
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
-    aspects_list = {}
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:
