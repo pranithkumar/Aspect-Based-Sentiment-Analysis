@@ -1,6 +1,9 @@
 import datapreprocessing as dp
 from extract_aspects import *
-import re, pprint
+import re, pprint, json, csv
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+
 
 def find_sub_list(sl,l):
 	result = []
@@ -38,7 +41,7 @@ def patterns(pos_tuples):
 
 reviews = dp.dataframecomplete('Apple-iPhone-Space-Grey-32GB.json','apple-iphone-6-space-grey-32-gb.json')
 aspects_dict = {}
-aspects_top = []
+aspects_top = {}
 ae_pairs = {}
 for review in reviews['review']:
 	res = ' '
@@ -49,18 +52,18 @@ for review in reviews['review']:
 			res = res + ch
 	review = res[1:]
 	
-	print "\n\n\nreview: " + review
+	#print "\n\n\nreview: " + review
 	
 	tokenized_data = tokenize(review.encode('utf-8'))
 	pos_tagged_data = pos_tag(tokenized_data)
-	print "pos tag: " 
-	print pos_tagged_data
+	#print "pos tag: " 
+	#print pos_tagged_data
 
 	pat = patterns(pos_tagged_data)
 
 	final_aspects = []
 	final_entities = []
-	print "aspects :"
+	#print "aspects :"
 	aspects_data = aspects_from_tagged_sents(pos_tagged_data)
 	entity_data = entities_from_tagged_sents(pos_tagged_data)
 	for asp in aspects_data:
@@ -70,22 +73,37 @@ for review in reviews['review']:
 				aspects_dict[asp] += 1
 			else:
 				aspects_dict[asp] = 1
-	print final_aspects
-	print "entities :"
+	#print final_aspects
+	#print "entities :"
 	for ent in entity_data:
 		if re.match('[a-zA-Z0-9_\' -!=:?;@]',ent):
 			final_entities.append(ent)
-	print final_entities
+	#print final_entities
 
 i = 0
 #pprint.pprint(aspects_dict)
-for k in sorted(aspects_dict.items(), key=lambda x:x[1], reverse=True):
+for k in sorted(aspects_dict.iteritems(), key=lambda x:x[1], reverse=True):
 	print k[0].encode('utf-8') + ' ' + str(k[1])
 	if i<15:
-		aspects_top.append(k[0].encode('utf-8'))
+		aspects_top[k[0].encode('utf-8')] = k[1]
 		i = i+1
 
-#print aspects_top
+'''
+aspects_top = json.dumps(aspects_top)
 
-# mining entities from aspects
+with open('data.json', 'w') as outfile:
+    json.dump(aspects_top, outfile)
+
+#mining entities from aspects
 aspects_dict = {a:[] for a in aspects_top}
+with open('dict.csv', 'wb') as csv_file:
+    writer = csv.writer(csv_file)
+    for key, value in aspects_top.items():
+       writer.writerow([key, value])
+'''
+wordcloud = WordCloud()
+wordcloud.generate_from_frequencies(frequencies=aspects_top)
+plt.figure()
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.show()
