@@ -12,6 +12,9 @@ aspects_top = []
 #defining the homepage
 @app.route('/')
 def homepage():
+    aspects_list = {}
+    aspects_top = []
+    #os.system('sudo service apache2 restart')
     return render_template('index.html')
 
 @app.route('/chart')
@@ -28,6 +31,8 @@ def login():
 @app.route('/success/<name>')
 def success(name):
 
+    global aspects_top
+    global aspects_list
     os.chdir('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/')
 
     fileflipkart = name + '_flipkart'
@@ -49,6 +54,12 @@ def success(name):
     os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
+
+    del aspects_top[:]
+    aspects_list.clear()
+
+#    aspects_list = {}
+#    aspects_top = []
 
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
