@@ -133,21 +133,9 @@ var myChart = new Chart(ctx, {
                       {{item[1]}},
                     {% endfor %}],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
+                'rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)','rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)','rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)','rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)','rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)','rgba(153, 102, 255, 0.5)', 'rgba(255, 159, 64, 0.5)','rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)','rgba(255, 206, 86, 0.5)'],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+                'rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)','rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(153, 102, 255, 1)','rgba(255, 159, 64, 1)','rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)'],
             borderWidth: 0.5
         }]
     },
@@ -165,47 +153,52 @@ var myChart = new Chart(ctx, {
 
 <!-- Bar Chart js -->
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels:[{% for item in labels %}
-                  "{{item}}",
-                  {% endfor %}],
+var barChartData = {
+labels:[{% for item in labels %}
+        "{{item}}",
+        {% endfor %}],
         datasets: [{
-            label: '# Sentiment Expressed',
+            label: 'Dataset 1',
+            backgroundColor: 'rgb(26, 255, 26,0.8)',
+            stack: 'Stack 0',
             data : [{% for item in values %}
-                      {{item}},
+                      {{item[0]}},
+                    {% endfor %}]
+        }, {
+            label: 'Dataset 2',
+            backgroundColor: 'rgb(255, 26, 26,0.8)',
+            stack: 'Stack 0',
+            data : [{% for item in values %}
+                      {{item[1]}},
                     {% endfor %}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 0.5
         }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+
+    };
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+            title: {
+                display: true,
+                text: 'Sentiments on Aspects'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false
+            },
+            responsive: true,
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
         }
-    }
-});
+    });
 </script>
 
 <!-- word cloud -->

@@ -54,12 +54,21 @@ def success(name):
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:
             aspects_top.append((key.encode('utf-8'),len(value)))
-            sent_score=[]
+            sent_score_pos=[]
+            sent_score_neg=[]
             for ke in aspects_dict[key].keys():
                 wrd = key + ' ' + ke
                 txt = TextBlob(wrd)
-                sent_score.append(txt.sentiment.polarity)
-            aspects_list[key.encode('utf-8')] = numpy.mean(sent_score)
+                score = txt.sentiment.polarity
+                if score>0:
+                    sent_score_pos.append(score)
+                elif score<0:
+                    sent_score_neg.append(score)
+            if sent_score_pos:
+                pavg = numpy.mean(sent_score_pos)
+            if sent_score_neg:
+                navg = numpy.mean(sent_score_neg)
+            aspects_list[key.encode('utf-8')] = (pavg,navg)
             i=i+1
 
     FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json"))
