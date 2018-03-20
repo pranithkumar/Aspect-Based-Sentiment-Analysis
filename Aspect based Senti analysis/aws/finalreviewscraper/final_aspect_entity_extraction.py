@@ -8,7 +8,7 @@ from textblob import TextBlob
 reload(sys)
 sys.setdefaultencoding('utf8')
 STOPWORDS = set(stopwords.words('english'))
-f=open('new_stopwords','r')
+f=open('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/new_stopwords','r')
 NEWSTOPWORDS = f.read().split('\n')
 STOPWORDS = STOPWORDS|set(NEWSTOPWORDS)
 
