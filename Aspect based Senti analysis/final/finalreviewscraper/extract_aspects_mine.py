@@ -54,22 +54,6 @@ def pos_tag(toked_sentence):
 	return nltk.pos_tag(toked_sentence)
 
 
-def pos_tag_stanford(toked_sentence):
-	"""
-	INPUT: list of strings
-	OUTPUT: list of tuples
-
-	Given a tokenized sentence, return 
-	a list of tuples of form (token, POS)
-	where POS is the part of speech of token
-	"""
-
-	from nltk.tag.stanford import POSTagger
-	st = POSTagger('english-bidirectional-distsim.tagger','stanford-postagger.jar')
-
-	return st.tag(toked_sentence)
-
-
 def aspects_from_tagged_sents(tagged_sentences):
 	"""
 	INPUT: list of lists of strings
@@ -86,7 +70,7 @@ def aspects_from_tagged_sents(tagged_sentences):
 	entity_counter = Counter()
 	i = 0
 	for sent in tagged_sentences:
-		if re.match('[a-zA-Z0-9_\' -!=:?;@]',sent[0]):
+		if re.match('[a-zA-Z0-9_\'/# -!=:?;@]',sent[0]):
 			if sent[1]=='NNP' or sent[1]=='NN' and sent[0] not in STOPWORDS:
 				noun_counter[sent[0]] += 1
 				print "aspect: " + sent[0] + " " + str(i)
@@ -98,43 +82,3 @@ def aspects_from_tagged_sents(tagged_sentences):
 
 	# list of tuples of form (noun, count)
 	return [noun for noun, _ in noun_counter.most_common(10)]
-
-
-def demo_aspect_extraction(): 
-	"""
-	Demo the aspect extraction functionality on one restaurant
-	"""
-
-	from main import read_data, get_reviews_for_business, extract_aspects
-
-	TEST_BIZ_ID = 's1dex3Z3QoqiK7V-zXUgAw'
-
-	print "Reading data..."
-	df = read_data()
-	print "Done."
-
-	BIZ_NAME = str(df[df.business_id==TEST_BIZ_ID]['name'].iloc[0])
-
-
-	print "Getting reviews for %s (ID = %s)" % (BIZ_NAME, TEST_BIZ_ID)
-	reviews = get_reviews_for_business(TEST_BIZ_ID, df)
-	print "Done."
-
-	print "Extracting aspects..."
-	aspects = extract_aspects(reviews)
-	print "Done."
-
-	print "==========="
-	print "Aspects for %s:" % BIZ_NAME
-	for i,aspect in enumerate(aspects):
-		print str(i) + ". " + aspect
-
-
-if __name__ == "__main__":
-	demo_aspect_extraction()
-
-
-
-
-
-

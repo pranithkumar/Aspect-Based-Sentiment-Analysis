@@ -28,6 +28,8 @@ def chart():
 @app.route('/success/<name>')
 def success(name):
 
+    global aspects_top
+    global aspects_list
     fileflipkart = name + '_flipkart'
     fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
 

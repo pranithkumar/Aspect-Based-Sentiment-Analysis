@@ -86,7 +86,7 @@ def aspects_from_tagged_sents(tagged_sentences):
 	entity_counter = Counter()
 	i = 0
 	for sent in tagged_sentences:
-		if re.match('[a-zA-Z0-9_\' -!=:?;@]',sent[0]):
+		if re.match('[a-zA-Z0-9_\'/# -!=:?;@]',sent[0]):
 			if sent[1]=='NNP' or sent[1]=='NN' and sent[0] not in STOPWORDS:
 				noun_counter[sent[0]] += 1
 				print "aspect: " + sent[0] + " " + str(i)
