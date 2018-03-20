@@ -8,6 +8,9 @@ from textblob import TextBlob
 reload(sys)
 sys.setdefaultencoding('utf8')
 STOPWORDS = set(stopwords.words('english'))
+f=open('new_stopwords','r')
+NEWSTOPWORDS = f.read().split('\n')
+STOPWORDS = STOPWORDS|set(NEWSTOPWORDS)
 
 def find_sub_list(sl,l):
 	result = []
@@ -65,7 +68,7 @@ def aspects_from_tagged_sents(tagged_sentences):
 	#print temp
 	count = 0
 	for sent in tagged_sentences:
-		if re.match('[a-zA-Z0-9_]',sent[0]):
+		if re.match('[a-zA-Z0-9]',sent[0]):
 			if sent[1]=='NNP' or sent[1]=='NN' or sent[1]=='NNS':
 				if(sent[0] not in STOPWORDS) and (temp[count] != -1):
 					#print "aspect:"+sent[0]
@@ -83,6 +86,8 @@ def aspects_from_tagged_sents(tagged_sentences):
 						for asp in asp_ent_pair:
 							asp_ent_pair[asp][sent[0]] = 1
 
+	if '' in asp_ent_pair:
+		asp_ent_pair[''] = {}
 	# list of tuples of form (noun, count)
 	return asp_ent_pair
 

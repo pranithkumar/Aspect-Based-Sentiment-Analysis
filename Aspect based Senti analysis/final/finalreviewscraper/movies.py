@@ -28,25 +28,36 @@ def chart():
 @app.route('/success/<name>')
 def success(name):
 
+    now = time.time()
+    old = now - 7 * 24 * 60 * 60
     global aspects_top
     global aspects_list
+    
     fileflipkart = name + '_flipkart'
     fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
 
     #check if the file already exists
     if os.path.exists("data/flipkart/"+fileflipkart+".json"):
-        os.system("rm data/flipkart/"+fileflipkart+".json")
-
-    os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+        stat = os.stat("data/flipkart/"+fileflipkart+".json")
+        if stat.st_ctime < old:
+            print "removing: data/flipkart/"+fileflipkart+".json"
+            os.remove("data/flipkart/"+fileflipkart+".json")
+            os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+    else:
+        os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
 
     fileamazon = name + '_amazon'
     fileamazon = re.sub(r'[^a-zA-Z0-9]', "_", fileamazon)
 
     #check if the file already exists
     if os.path.exists("data/amazon/"+fileamazon+".json"):
-        os.system("rm data/amazon/"+fileamazon+".json")
-
-    os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
+        stat = os.stat("data/amazon/"+fileamazon+".json")
+        if stat.st_ctime < old:
+            print "removing: data/flipkart/"+fileamazon+".json"
+            os.remove("data/flipkart/"+fileamazon+".json")
+            os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
+    else:
+        os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 

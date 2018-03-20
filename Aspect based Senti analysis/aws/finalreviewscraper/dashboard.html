@@ -26,7 +26,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <span class="w3-bar-item w3-right"><a href="http://0.0.0.0:5000">HOME</a></span>
+  <span class="w3-bar-item w3-right"><a href="/">HOME</a></span>
 </div>
 
 <!-- Sidebar/menu -->
@@ -172,47 +172,52 @@ $(document).ready(function(){$("#dataTable").DataTable()});
 
 <!-- Chart js -->
 <script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels:[{% for item in labels %}
-                  "{{item}}",
-                  {% endfor %}],
-        datasets: [{
-            label: '# Sentiment Expressed',
-            data : [{% for item in values %}
-                      {{item}},
-                    {% endfor %}],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 0.5
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+    var barChartData = {
+    labels:[{% for item in labels %}
+            "{{item}}",
+            {% endfor %}],
+            datasets: [{
+                label: 'Dataset 1',
+                backgroundColor: 'rgb(26, 255, 26,0.8)',
+                stack: 'Stack 0',
+                data : [{% for item in values %}
+                          {{item[0]}},
+                        {% endfor %}]
+            }, {
+                label: 'Dataset 2',
+                backgroundColor: 'rgb(255, 26, 26,0.8)',
+                stack: 'Stack 0',
+                data : [{% for item in values %}
+                          {{item[1]}},
+                        {% endfor %}],
             }]
-        }
-    }
-});
+
+        };
+
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                title: {
+                    display: true,
+                    text: 'Sentiments on Aspects'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false
+                },
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true
+                    }]
+                }
+            }
+        });
 </script>
 
 </body>
