@@ -48,9 +48,9 @@ def aspects_from_tagged_sents(tagged_sentences):
 
 	for noun in noun_sets:
 		if find_sub_list(noun,tags_list) != []:
-			print noun
+			#print noun
 			parts = find_sub_list(noun,tags_list)
-			print parts[0]
+			#print parts[0]
 			asp = ' '
 
 			for index in range(int(parts[0][0]),int(parts[0][1])+1):
@@ -59,18 +59,19 @@ def aspects_from_tagged_sents(tagged_sentences):
 						temp[index] = -1
 						asp += ' ' + tagged_sentences[index][0]
 
-			print "aspect:" + asp[2:]
+			#print "aspect:" + asp[2:]
 			asp_ent_pair[asp[2:]] = {}
 			c = 1
-
+	#print temp
 	count = 0
 	for sent in tagged_sentences:
 		if re.match('[a-zA-Z0-9_]',sent[0]):
 			if sent[1]=='NNP' or sent[1]=='NN' or sent[1]=='NNS':
 				if(sent[0] not in STOPWORDS) and (temp[count] != -1):
-					print "aspect:"+sent[0]
+					#print "aspect:"+sent[0]
 					asp_ent_pair[sent[0]] = {}
 					c = 1
+		count += 1
 
 	for sent in tagged_sentences:
 		if re.match('[a-zA-Z0-9_]',sent[0]):
@@ -78,7 +79,7 @@ def aspects_from_tagged_sents(tagged_sentences):
 				break
 			if sent[1] in ['JJ','RB','RBR','RBS','VBN','VBD','VBP']:
 					if sent[0] not in STOPWORDS:
-						print "entity: " + sent[0]
+						#print "entity: " + sent[0]
 						for asp in asp_ent_pair:
 							asp_ent_pair[asp][sent[0]] = 1
 
@@ -113,7 +114,7 @@ def get_aspects(Amazon,Flipkart,input_text):
 			else:
 				res = res + ch
 		review = res[1:]
-		print "\n\n\nreview: "+review
+		#print "\n\n\nreview: "+review
 
 		word_tokens = word_tokenize(review)
 		#pos tagging
@@ -147,8 +148,8 @@ def get_aspects(Amazon,Flipkart,input_text):
 
 		split_words = [',','.',';']
 
-		print "sets:"
-		print final_sets
+		#print "sets:"
+		#print final_sets
 
 		for sentence in final_sets:
 			tokenized_data = tokenize(sentence.encode('utf-8','ignore'))
@@ -165,8 +166,8 @@ def get_aspects(Amazon,Flipkart,input_text):
 			
 			aspects_data = aspects_from_tagged_sents(pos_tagged_data)
 
-			print "aspects and entities :"
-			print aspects_data
+			#print "aspects and entities :"
+			#print aspects_data
 			
 			for asp in aspects_data:
 				if asp in aspects_dict:
@@ -178,9 +179,9 @@ def get_aspects(Amazon,Flipkart,input_text):
 				else:
 					aspects_dict[asp] = aspects_data[asp]
 		i +=1	
-	pprint.pprint(aspects_dict)
+	#pprint.pprint(aspects_dict)
 	i = 0
-	print '\n\n\n\n\n\n\n\n\n\n'
+	#print '\n\n\n\n\n\n\n\n\n\n'
 
 	for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
 		if i < 15:
