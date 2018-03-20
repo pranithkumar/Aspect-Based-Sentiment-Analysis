@@ -50,6 +50,9 @@ def success(name):
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
+    del aspects_top[:]
+    aspects_list.clear()
+
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:

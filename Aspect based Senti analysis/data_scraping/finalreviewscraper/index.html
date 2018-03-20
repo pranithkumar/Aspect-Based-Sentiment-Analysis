@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ABSA-client</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <style>
+        body,html { width: 100%; height: 100%;}body,h1,h2,h3,h4,h5,h6 {font-family: Lato;font-weight: light;}.topnav {font-size: 14px;}.intro-banner { padding-top: 50px; padding-bottom: 50px;text-align: center;color: #0d0d0d; background: url("https://stackoverflow.blog/wp-content/uploads/2018/02/NavigatingStackOverflow.png") no-repeat center center; background-size: cover;}.intro-inner { position: relative; padding-top: 20%; padding-bottom: 20%;}.intro-inner > h1 { margin: 0;font-size: 5em;}.intro-divider { width: 400px; border-top: 1px solid #f2f2f2;border-bottom: 1px solid rgba(0, 0, 0, 0.2);}.intro-inner > h3 {}.lead {font-size: 20px;}  @media (max-width: 767px) {.intro-inner {padding-bottom: 15%;}.intro-inner > h1 {font-size: 3em;}ul.intro-divider {width: 100%;}} ..content-section-a { padding: 50px 0; background-color: #f2f2f2;}.content-section-b {padding: 50px 0; border-top: 1px solid #e3e3e3;border-bottom: 1px solid #e3e3e3;} .section-heading-spacer {float: left;width: 200px;border-top: 3px solid #e3e3e3;} .section-heading {margin-bottom: 30px;}#imaginary_container{margin-top:10%;}.stylish-input-group .input-group-addon{ background: white !important;}.stylish-input-group .form-control{ border-right:0; box-shadow:0 0 0; border-color:#ccc;}.stylish-input-group button{ border:0; background:transparent;}
+    </style>
+</head>
+<body>
+
+    <!-- This is code from the previous tutorial with the following changes -->
+
+    <!-- navbar-fixed-top topnav -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav">
+
+        <!-- topnav -->
+        <div class="container topnav">
+
+            <!-- Logo -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Aspect Based Sentiment Analysis</a>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="collapse navbar-collapse" id="mainNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="0.0.0.0:5000">Home</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Banner header section -->
+    <div class="intro-banner">
+        <div class="container">
+            <div class="row">
+              
+                <div class="col-lg-12">
+                    <div class="intro-inner">
+                        <h1>Welcome to ABSA Client</h1>
+                        <h2>Get the sentiments expressed on consumer products</h2>
+                        <hr class="intro-divider">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div id="imaginary_container">
+                                    <div>
+                                      <form action="http://0.0.0.0:5000/test" method="get" id="form_search" name="form_search" class="form">
+                                          <div class="form-group">
+                                            <div class="input-group">
+                                              <input class="form-control" name="nm" id="search" placeholder="Search for..." type="text">
+                                                <span class="input-group-btn">
+                                                  <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                                </span>
+                                            </div>
+                                          </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <!-- Content row 1 -->
+    <div class="content-section-a">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+
+                    <!-- clearfix makes it so elements are not side by side -->
+                    <div class="clearfix"></div>
+
+                    <h2 class="section-heading">Get an Analysis of products sentiments</h2>
+                    <p class="lead">
+                        Reviews are Scraped from E-commerece web sites. This app uses NLP techniques to group Entities and Aspects of a product, and uses Machine Learning techniques to classify sentiments !!<br>
+                        Get Real Time Opinions expressed !
+                    </p>
+                </div>
+
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive img-rounded" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAIbAAAAJGNiNDJiMmEzLTE4MTQtNDBjYy1hYTg5LTNhZjU2NzAzNDVhNA.png">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <hr>
+            <div class="col-lg-12">
+                <div class="col-md-4">
+                    <p class="muted pull-right">Developed by Jitendra Kalyan, Pranith Kumar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
