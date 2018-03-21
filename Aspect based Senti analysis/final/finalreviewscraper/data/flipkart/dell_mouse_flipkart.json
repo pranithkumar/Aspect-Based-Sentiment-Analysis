@@ -32,6 +32,7 @@
 {"rating": 5, "title": "Positive", "review": "Best mouse in range of 350-500", "verification": {"CERTIFIED_BUYER": true}, "date": "9 Mar, 2017", "reviewer": "TARUN  KUMAR"},
 {"rating": 1, "title": "Don't waste your money", "review": "Very bad product scroll stopped working in 2 days ..very poor", "verification": {"CERTIFIED_BUYER": true}, "date": "24 Jan, 2017", "reviewer": "Flipkart Customer"},
 {"rating": 1, "title": "Worst experience ever!", "review": "Very cheap quality, not  worth the price.", "verification": {"CERTIFIED_BUYER": true}, "date": "26 Oct, 2016", "reviewer": "Pradosh Gaonkar"},
+{"rating": 3, "title": "Good", "review": "Nice product but it has small cable", "verification": {"CERTIFIED_BUYER": true}, "date": "20 Mar, 2018", "reviewer": "KAMAL CHAUHAN"},
 {"rating": 5, "title": "Super!", "review": "Nice one. Worth to buy", "verification": {"CERTIFIED_BUYER": true}, "date": "20 Mar, 2018", "reviewer": "Vasanthakumar P"},
 {"rating": 5, "title": "Best in the market!", "review": "Awesome Product", "verification": {"CERTIFIED_BUYER": true}, "date": "19 Mar, 2018", "reviewer": "Bikash Kumar Barik"},
 {"rating": 4, "title": "Nice product", "review": "Light weight and comfortable for usage", "verification": {"CERTIFIED_BUYER": true}, "date": "19 Mar, 2018", "reviewer": "Arun Bharathi"},
@@ -97,6 +98,5 @@
 {"rating": 5, "title": "Must buy!", "review": "Nice", "verification": {"CERTIFIED_BUYER": true}, "date": "31 Jan, 2018", "reviewer": "Surajit Karmakar"},
 {"rating": 4, "title": "Pretty good", "review": "Genuine and nice product of Dell", "verification": {"CERTIFIED_BUYER": true}, "date": "30 Jan, 2018", "reviewer": "Flipkart Customer"},
 {"rating": 5, "title": "Worth the money", "review": "It performs very well as per my expectations with less price.", "verification": {"CERTIFIED_BUYER": true}, "date": "29 Jan, 2018", "reviewer": "Nilesh Kawarkhe"},
-{"rating": 5, "title": "Just wow!", "review": "i like it....thank u filpkart", "verification": {"CERTIFIED_BUYER": true}, "date": "28 Jan, 2018", "reviewer": "UMA BHARDWAJ"},
-{"rating": 4, "title": "Nice product", "review": "Good", "verification": {"CERTIFIED_BUYER": true}, "date": "28 Jan, 2018", "reviewer": "Ajay Kumar"}
+{"rating": 5, "title": "Just wow!", "review": "i like it....thank u filpkart", "verification": {"CERTIFIED_BUYER": true}, "date": "28 Jan, 2018", "reviewer": "UMA BHARDWAJ"}
 ]
