@@ -4,7 +4,7 @@ import requests,json,os,sys,time,os.path,ast,string,re,numpy
 from final_aspect_entity_extraction import *
 from textblob import TextBlob
 
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__, template_folder='.',static_url_path='/static')
 
 aspects_list = {}
 aspects_top = []
