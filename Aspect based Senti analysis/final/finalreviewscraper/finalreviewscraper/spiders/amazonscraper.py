@@ -10,7 +10,7 @@ class AmazonscraperSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.start_urls:
-            yield scrapy.Request(url+self.ip, dont_filter=True,headers = ({"x-user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.92 Safari/537.36 FKUA/website/41/website/Desktop"}))
+            yield scrapy.Request(url+self.ip, dont_filter=True,headers = {"x-user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.92 Safari/537.36 FKUA/website/41/website/Desktop"})
 
     def parse(self, response):
         #extracting titles of all products
@@ -24,7 +24,7 @@ class AmazonscraperSpider(scrapy.Spider):
         links[0] = links[0].replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
         
         for i in range(1,11):
-        	request = scrapy.Request(links[0]+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = ({"x-user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.92 Safari/537.36 FKUA/website/41/website/Desktop"}))
+        	request = scrapy.Request(links[0]+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = {"x-user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.92 Safari/537.36 FKUA/website/41/website/Desktop"})
         	yield request
 
     def scrape_reviews(self,response):
