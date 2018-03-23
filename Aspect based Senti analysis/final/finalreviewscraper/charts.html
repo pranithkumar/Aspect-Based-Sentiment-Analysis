@@ -208,7 +208,18 @@ labels:[{% for item in labels %}
 </script>
 
 <!-- word cloud -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/wordcloud.js?')}}"+{{count}}></script>
-
+<script>
+  var extra={{count}};
+  var url_pos="{{ url_for('static', filename='wordcloud_pos.png?')}}";
+  url_pos=url_pos.replace("%3F","?count=");
+  console.log(extra);
+  document.getElementById('wordcloud_pos').src = url_pos+extra;
+  console.log(url_pos+extra);
+  var url_neg="{{ url_for('static', filename='wordcloud_neg.png?')}}";
+  url_neg=url_neg.replace("%3F","?count=");
+  console.log(extra);
+  document.getElementById('wordcloud_neg').src = url_neg+extra;
+  console.log(url_neg+extra);
+</script>
 </body>
 </html>
