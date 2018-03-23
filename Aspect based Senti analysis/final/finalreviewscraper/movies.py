@@ -12,6 +12,7 @@ app = Flask(__name__, template_folder='.',static_url_path='/static')
 aspects_list = {}
 aspects_wc = {}
 aspects_top = []
+wordcloud_count = 0
 
 def grey_color_func(word, font_size, position, orientation, random_state=None,
                     **kwargs):
@@ -30,6 +31,7 @@ def login():
 
 @app.route('/chart')
 def chart():
+    global wordcloud_count
     positive = {}
     negative = {}
 
@@ -60,8 +62,9 @@ def chart():
 
     plt.axis("off")
     plt.savefig("static/wordcloud_neg.png",transparent=True)
+    wordcloud_count+=1
     #plt.show()
-    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg='static/wordcloud_pos.png',negativeImg='static/wordcloud_neg.png')
+    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,count=wordcloud_count)
 
 #function that executes the spiders and stores the output in json files
 @app.route('/success/<name>')

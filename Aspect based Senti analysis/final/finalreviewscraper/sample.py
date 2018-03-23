@@ -32,12 +32,12 @@ wordcloud_neg = WordCloud(background_color=None, mode="RGBA",mask=negative_img ,
 plt.imshow(wordcloud_pos.recolor(color_func=grey_color_func, random_state=3), interpolation="bilinear")
 
 plt.axis("off")
-plt.savefig("worldcloud_pos.png",transparent=True)
+plt.savefig("wordcloud_pos.png",transparent=True)
 plt.show()
 
 plt.close()
 plt.imshow(wordcloud_neg.recolor(color_func=grey_color_func, random_state=3), interpolation="bilinear")
 
 plt.axis("off")
-plt.savefig("worldcloud_neg.png",transparent=True)
+plt.savefig("wordcloud_neg.png",transparent=True)
 plt.show()
