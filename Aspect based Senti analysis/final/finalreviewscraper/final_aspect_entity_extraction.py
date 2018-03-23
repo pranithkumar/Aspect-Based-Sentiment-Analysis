@@ -1,5 +1,6 @@
 import datapreprocessing as dp
-from extract_aspects_mine import *
+from external.my_potts_tokenizer import MyPottsTokenizer
+from collections import Counter
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import nltk,pandas,re,pprint,sys
@@ -19,6 +20,31 @@ def find_sub_list(sl,l):
 		if l[ind:ind+sll]==sl:
 			result.append((ind,ind+sll-1))
 	return result
+
+def tokenize(sentence):
+	"""
+	INPUT: string (full sentence)
+	OUTPUT: list of strings
+
+	Given a sentence in string form, return 
+	a tokenized list of lowercased words. 
+	"""
+
+	pt = MyPottsTokenizer(preserve_case=False)
+	return pt.tokenize(sentence)
+
+
+def pos_tag(toked_sentence):
+	"""
+	INPUT: list of strings
+	OUTPUT: list of tuples
+
+	Given a tokenized sentence, return 
+	a list of tuples of form (token, POS)
+	where POS is the part of speech of token
+	"""
+	return nltk.pos_tag(toked_sentence)
+
 
 def aspects_from_tagged_sents(tagged_sentences):
 
