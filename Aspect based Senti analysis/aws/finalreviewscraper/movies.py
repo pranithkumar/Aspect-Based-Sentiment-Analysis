@@ -69,6 +69,8 @@ def success(name):
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
         if i < 15:
+            navg=0.0
+            pavg=0.0
             aspects_top.append((key.encode('utf-8'),len(value)))
             sent_score_pos=[]
             sent_score_neg=[]
@@ -81,17 +83,23 @@ def success(name):
                 elif score<0:
                     sent_score_neg.append(score)
             if sent_score_pos:
-                pavg = numpy.mean(sent_score_pos)
+                pavg = numpy.sum(sent_score_pos)/(len(sent_score_pos)+len(sent_score_neg))
             if sent_score_neg:
-                navg = numpy.mean(sent_score_neg)
-            aspects_list[key.encode('utf-8')] = (pavg,navg)
+                navg = numpy.sum(sent_score_neg)/(len(sent_score_pos)+len(sent_score_neg))
+            aspects_list[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             i=i+1
-
-    FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json"))
+    print len(aspects_list.keys())
+    #rendering data from files to the html output
+    if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
+        return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
+    elif os.stat("data/flipkart/"+fileflipkart+".json").st_size == 0:
+        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=[], labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
+    else:
+        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
 
     #rendering data from files to the html output
     #return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values())
-    return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.dumps(FlipkartReviews), labels=aspects_list.keys(), values=aspects_list.values(),aspects=aspects_top)
+    #return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.dumps(FlipkartReviews), labels=aspects_list.keys(), values=aspects_list.values(),aspects=aspects_top)
 
 if __name__ == '__main__':
     #app.run(host='0.0.0.0', debug=True)

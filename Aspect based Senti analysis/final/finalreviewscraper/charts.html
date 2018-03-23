@@ -158,14 +158,14 @@ labels:[{% for item in labels %}
         "{{item}}",
         {% endfor %}],
         datasets: [{
-            label: 'Dataset 1',
+            label: 'Positive',
             backgroundColor: 'rgb(26, 255, 26,0.8)',
             stack: 'Stack 0',
             data : [{% for item in values %}
                       {{item[0]}},
                     {% endfor %}]
         }, {
-            label: 'Dataset 2',
+            label: 'Negative',
             backgroundColor: 'rgb(255, 26, 26,0.8)',
             stack: 'Stack 0',
             data : [{% for item in values %}
