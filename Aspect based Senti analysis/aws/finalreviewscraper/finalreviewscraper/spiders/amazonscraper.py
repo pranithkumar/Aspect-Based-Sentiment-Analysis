@@ -21,10 +21,18 @@ class AmazonscraperSpider(scrapy.Spider):
         for i in range(0,len(links)):
             f.write(str(titles[i].encode('utf-8'))+"\n"+str(links[i].encode('utf-8'))+"\n")
 
-        links[0] = links[0].replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
+        for i in links:
+            if '/dp/' in i:
+                link = i
+                break
+        print "\n\n\n\n\n\n\n\n\n\n"
+        print link
+
+        link = link.replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
         
         for i in range(1,11):
-            request = scrapy.Request(links[0]+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+            request = scrapy.Request(link+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+            print request
             yield request
 
     def scrape_reviews(self,response):
