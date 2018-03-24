@@ -82,18 +82,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div>
     <h4>Word Cloud</h4>
     <div class="col-sm-6">
-      <img class="img-responsive" id="wordcloud_pos">
+      <img class="img-responsive" src={{positiveImg}}>
     </div>
 
     <div class="col-sm-6">
-      <img class="img-responsive" id="wordcloud_neg">
+      <img class="img-responsive" src={{negativeImg}}>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
     <h4></h4>
-    <p>Developed by Jitendra, Pranith</p>
+    <p>Developed by Pranith kumar,Jitendra Klayan</p>
   </footer>
 
   <!-- End page content -->
@@ -208,18 +208,5 @@ labels:[{% for item in labels %}
 </script>
 
 <!-- word cloud -->
-<script>
-  var extra={{count}};
-  var url_pos="{{ url_for('static', filename='wordcloud_pos.png?')}}";
-  url_pos=url_pos.replace("%3F","?count=");
-  console.log(extra);
-  document.getElementById('wordcloud_pos').src = url_pos+extra;
-  console.log(url_pos+extra);
-  var url_neg="{{ url_for('static', filename='wordcloud_neg.png?')}}";
-  url_neg=url_neg.replace("%3F","?count=");
-  console.log(extra);
-  document.getElementById('wordcloud_neg').src = url_neg+extra;
-  console.log(url_neg+extra);
-</script>
 </body>
 </html>

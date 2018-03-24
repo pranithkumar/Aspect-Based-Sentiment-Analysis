@@ -12,11 +12,24 @@ app = Flask(__name__, template_folder='.',static_url_path='/static')
 aspects_list = {}
 aspects_wc = {}
 aspects_top = []
-wordcloud_count = 0
+product_name = " "
 
-def grey_color_func(word, font_size, position, orientation, random_state=None,
+def grey_color_func_pos(word, font_size, position, orientation, random_state=None,
                     **kwargs):
-    return "hsl(0, 0%%, %d%%)" % random.randint(0, 1)
+    return "hsl(115, 83%, 50%)"
+
+def grey_color_func_neg(word, font_size, position, orientation, random_state=None,
+                    **kwargs):
+    return "hsl(0, 83%, 50%)"
+
+def gen_word_cloud(image,func,file,data):
+    img = numpy.array(Image.open(image))
+    wordcloud = WordCloud(background_color=None, mode="RGBA",mask=img ,width=900,height=500, max_words=1628,relative_scaling=1,normalize_plurals=False).generate_from_frequencies(data)
+    plt.close()
+    plt.imshow(wordcloud.recolor(color_func=func, random_state=3), interpolation="bilinear")
+
+    plt.axis("off")
+    plt.savefig(file,transparent=True)
 
 #defining the homepage
 @app.route('/')
@@ -31,7 +44,10 @@ def login():
 
 @app.route('/chart')
 def chart():
-    global wordcloud_count
+    global aspects_wc
+    aspects_wc.clear()
+    now = time.time()
+    old = now - 7 * 24 * 60 * 60
     positive = {}
     negative = {}
 
@@ -41,30 +57,23 @@ def chart():
         if aspects_wc[i][1]!=0.0:
             negative[i] = aspects_wc[i][1]
 
+    if os.path.exists("static/img/pos/"+product_name+".png"):
+        stat = os.stat("static/img/pos/"+product_name+".png")
+        if stat.st_ctime < old:
+            os.remove("static/img/pos/"+product_name+".png")
+            gen_word_cloud("thumbup.png",grey_color_func_pos,"static/img/pos/"+product_name+".png",positive)
+    else:
+        gen_word_cloud("thumbup.png",grey_color_func_pos,"static/img/pos/"+product_name+".png",positive)
 
-    positive_img = numpy.array(Image.open("thumbup.png"))
-    negative_img = numpy.array(Image.open("thumbdown.png"))
-
-    wordcloud_pos = WordCloud(background_color=None, mode="RGBA",mask=positive_img ,width=900,height=500, max_words=1628,relative_scaling=1,normalize_plurals=False).generate_from_frequencies(positive)
-
-    wordcloud_neg = WordCloud(background_color=None, mode="RGBA",mask=negative_img ,width=900,height=500, max_words=1628,relative_scaling=1,normalize_plurals=False).generate_from_frequencies(negative)
-
-    #image_colors = ImageColorGenerator(negative_img)
-    plt.close()
-    plt.imshow(wordcloud_pos.recolor(color_func=grey_color_func, random_state=3), interpolation="bilinear")
-
-    plt.axis("off")
-    plt.savefig("static/wordcloud_pos.png",transparent=True)
-    #plt.show()
-    plt.close()
-
-    plt.imshow(wordcloud_neg.recolor(color_func=grey_color_func, random_state=3), interpolation="bilinear")
-
-    plt.axis("off")
-    plt.savefig("static/wordcloud_neg.png",transparent=True)
-    wordcloud_count+=1
-    #plt.show()
-    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,count=wordcloud_count)
+    if os.path.exists("static/img/neg/"+product_name+".png"):
+        stat = os.stat("static/img/neg/"+product_name+".png")
+        if stat.st_ctime < old:
+            os.remove("static/img/neg/"+product_name+".png")
+            gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
+    else:
+        gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
+    
+    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg="static/img/pos/"+product_name+".png",negativeImg="static/img/neg/"+product_name+".png")
 
 #function that executes the spiders and stores the output in json files
 @app.route('/success/<name>')
@@ -75,24 +84,10 @@ def success(name):
     global aspects_top
     global aspects_list
     global aspects_wc
+    global product_name
 
-    if os.path.exists("static/wordcloud_pos.png"):
-        os.remove("static/wordcloud_pos.png")
-    if os.path.exists("static/wordcloud_neg.png"):
-        os.remove("static/wordcloud_neg.png")
-
-    fileflipkart = name + '_flipkart'
-    fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
-
-    #check if the file already exists
-    if os.path.exists("data/flipkart/"+fileflipkart+".json"):
-        stat = os.stat("data/flipkart/"+fileflipkart+".json")
-        if stat.st_ctime < old:
-            print "removing: data/flipkart/"+fileflipkart+".json"
-            os.remove("data/flipkart/"+fileflipkart+".json")
-            os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
-    else:
-        os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+    product_name = name
+    product_name = re.sub(r'[^a-zA-Z0-9]', "_", product_name)
 
     fileamazon = name + '_amazon'
     fileamazon = re.sub(r'[^a-zA-Z0-9]', "_", fileamazon)
@@ -106,6 +101,29 @@ def success(name):
             os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
     else:
         os.system("scrapy crawl amazonscraper -a ip='"+name+"' -o data/amazon/"+fileamazon+".json")
+
+    fileflipkart = name + '_flipkart'
+    fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
+
+    #check if the file already exists
+    if os.path.exists("data/flipkart/"+fileflipkart+".json"):
+        stat = os.stat("data/flipkart/"+fileflipkart+".json")
+        if stat.st_ctime < old:
+            print "removing: data/flipkart/"+fileflipkart+".json"
+            os.remove("data/flipkart/"+fileflipkart+".json")
+            f = open("product_details.txt","r")
+            data = f.read().split("\n")
+            f.close()
+            print "data:"+str(data[0])
+            name = data[0]
+            os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+    else:
+        f = open("product_details.txt","r")
+        data = f.read().split("\n")
+        f.close()
+        print "data:"+str(data[0])
+        name = data[0]
+        os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
