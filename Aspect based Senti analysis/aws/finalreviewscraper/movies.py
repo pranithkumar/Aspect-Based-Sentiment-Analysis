@@ -16,6 +16,7 @@ aspects_list = {}
 aspects_wc = {}
 aspects_top = []
 product_name = " "
+sys.stdout = open('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/output.logs', 'w')
 
 def grey_color_func_pos(word, font_size, position, orientation, random_state=None,
                     **kwargs):
@@ -51,8 +52,8 @@ def chart():
     global aspects_wc
     now = time.time()
     old = now - 7 * 24 * 60 * 60
-    positive = {'None':1}
-    negative = {'None':1}
+    positive = {}
+    negative = {}
     print "aspects wc:"
     print aspects_wc
 
@@ -77,8 +78,7 @@ def chart():
             os.remove("static/img/neg/"+product_name+".png")
             gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
     else:
-        gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
-    
+	gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
     return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg="static/img/pos/"+product_name+".png",negativeImg="static/img/neg/"+product_name+".png")
 
 #function that executes the spiders and stores the output in json files
@@ -169,7 +169,8 @@ def success(name):
 
     read_dictionary = numpy.load('product_details.npy').item()
     product_link = read_dictionary[name]
-
+    print "1"
+    print aspects_wc
     #rendering data from files to the html output
     if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
         return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
