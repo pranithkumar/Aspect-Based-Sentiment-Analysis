@@ -1,4 +1,7 @@
 #This file runs a flask application that scrapes data from amazon and flipkart for specific products by executing scrapy spiders
+import matplotlib
+# Force matplotlib to not use any Xwindows backend.
+matplotlib.use('Agg')
 from flask import Flask, render_template, redirect, url_for, request
 import requests,json,os,sys,time,os.path,ast,string,re,numpy,random
 from final_aspect_entity_extraction import *
@@ -8,7 +11,6 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 app = Flask(__name__, template_folder='.',static_url_path='/static')
-
 aspects_list = {}
 aspects_wc = {}
 aspects_top = []
@@ -50,13 +52,16 @@ def chart():
     old = now - 7 * 24 * 60 * 60
     positive = {}
     negative = {}
+    print "aspects wc:"
+    print aspects_wc
 
     for i in aspects_wc:
         if aspects_wc[i][0]!=0.0:
             positive[i] = aspects_wc[i][0]
         if aspects_wc[i][1]!=0.0:
             negative[i] = aspects_wc[i][1]
-
+    print "positive:"
+    print positive
     if os.path.exists("static/img/pos/"+product_name+".png"):
         stat = os.stat("static/img/pos/"+product_name+".png")
         if stat.st_ctime < old:
