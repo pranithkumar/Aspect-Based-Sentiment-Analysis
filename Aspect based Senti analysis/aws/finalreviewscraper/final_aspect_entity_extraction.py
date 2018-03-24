@@ -1,8 +1,9 @@
 import datapreprocessing as dp
-from extract_aspects_mine import *
+from external.my_potts_tokenizer import MyPottsTokenizer
+from collections import Counter
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import nltk,pandas,re,pprint,sys
+import nltk,pandas,re,pprint,sys,os
 from textblob import TextBlob
 
 reload(sys)
@@ -10,6 +11,10 @@ sys.setdefaultencoding('utf8')
 STOPWORDS = set(stopwords.words('english'))
 f=open('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/new_stopwords','r')
 NEWSTOPWORDS = f.read().split('\n')
+temp = []
+for word in NEWSTOPWORDS:
+	temp.append(word.decode('ascii'))
+NEWSTOPWORDS = temp
 STOPWORDS = STOPWORDS|set(NEWSTOPWORDS)
 
 def find_sub_list(sl,l):
@@ -19,6 +24,31 @@ def find_sub_list(sl,l):
 		if l[ind:ind+sll]==sl:
 			result.append((ind,ind+sll-1))
 	return result
+
+def tokenize(sentence):
+	"""
+	INPUT: string (full sentence)
+	OUTPUT: list of strings
+
+	Given a sentence in string form, return 
+	a tokenized list of lowercased words. 
+	"""
+
+	pt = MyPottsTokenizer(preserve_case=False)
+	return pt.tokenize(sentence)
+
+
+def pos_tag(toked_sentence):
+	"""
+	INPUT: list of strings
+	OUTPUT: list of tuples
+
+	Given a tokenized sentence, return 
+	a list of tuples of form (token, POS)
+	where POS is the part of speech of token
+	"""
+	return nltk.pos_tag(toked_sentence)
+
 
 def aspects_from_tagged_sents(tagged_sentences):
 
@@ -103,7 +133,12 @@ def get_aspects(Amazon,Flipkart,input_text):
 			STOPWORDS.add(word)
 
 	#Using preprocessed text for categorization
-	reviews = dp.dataframecomplete(Amazon,Flipkart)
+	if os.stat(Amazon).st_size == 0:
+		reviews = dp.dataframeflipkart(Flipkart)
+	elif os.stat(Flipkart).st_size == 0:
+		reviews = dp.dataframeamazon(Amazon)
+	else:
+		reviews = dp.dataframecomplete(Amazon,Flipkart)
 
 	#initnalizing the aspects dictionary
 	aspects_dict = {}

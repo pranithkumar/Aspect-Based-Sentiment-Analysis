@@ -7,6 +7,10 @@ from nltk.stem import PorterStemmer, WordNetLemmatizer
 #function to convert data from flipkart json file to dataframe
 def dataframeflipkart(inputfile):
 	reviews_list = json.load(open(inputfile,"r"))
+	
+	df = pandas.DataFrame()
+	if reviews_list == None:
+		return df
 
 	for i in range(0,len(reviews_list)):
 		reviews_list[i].pop('date')
@@ -19,7 +23,10 @@ def dataframeflipkart(inputfile):
 #function to convert data from amazon json file to dataframe
 def dataframeamazon(inputfile):
 	reviews_list = json.load(open(inputfile,"r"))
+	
 	df = pandas.DataFrame()
+	if reviews_list == None:
+		return df
 
 	for i in range(0,len(reviews_list)):
 		reviews_list[i].pop('date')

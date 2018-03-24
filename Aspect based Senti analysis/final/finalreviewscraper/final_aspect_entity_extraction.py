@@ -3,7 +3,7 @@ from external.my_potts_tokenizer import MyPottsTokenizer
 from collections import Counter
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import nltk,pandas,re,pprint,sys
+import nltk,pandas,re,pprint,sys,os
 from textblob import TextBlob
 
 reload(sys)
@@ -11,6 +11,10 @@ sys.setdefaultencoding('utf8')
 STOPWORDS = set(stopwords.words('english'))
 f=open('new_stopwords','r')
 NEWSTOPWORDS = f.read().split('\n')
+temp = []
+for word in NEWSTOPWORDS:
+	temp.append(word.decode('ascii'))
+NEWSTOPWORDS = temp
 STOPWORDS = STOPWORDS|set(NEWSTOPWORDS)
 
 def find_sub_list(sl,l):
@@ -129,7 +133,12 @@ def get_aspects(Amazon,Flipkart,input_text):
 			STOPWORDS.add(word)
 
 	#Using preprocessed text for categorization
-	reviews = dp.dataframecomplete(Amazon,Flipkart)
+	if os.stat(Amazon).st_size == 0:
+		reviews = dp.dataframeflipkart(Flipkart)
+	elif os.stat(Flipkart).st_size == 0:
+		reviews = dp.dataframeamazon(Amazon)
+	else:
+		reviews = dp.dataframecomplete(Amazon,Flipkart)
 
 	#initnalizing the aspects dictionary
 	aspects_dict = {}

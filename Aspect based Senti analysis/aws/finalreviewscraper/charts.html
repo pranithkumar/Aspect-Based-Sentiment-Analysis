@@ -3,19 +3,19 @@
 <head>
 <title>ABSA Analytics</title>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="{{ url_for('static',filename='style/w3.css')}}">
+<link rel="stylesheet" href="{{ url_for('static',filename='style/raleway.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
-<!-- zing chart -->
-<script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
-<script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/"; ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
+<link rel="stylesheet" href="{{ url_for('static',filename='style/dataTables.bootstrap4.css')}}">
+<link rel="stylesheet" href="{{ url_for('static',filename='style/jquery.dataTables.min.css')}}">
+<link href="{{ url_for('static',filename='style/bootstrap.min.css')}}" rel="stylesheet" id="bootstrap-css">
+<script src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/Chart.bundle.js')}}"></script>
 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -79,15 +79,21 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
   </div>
 
-  <div class="w3-container">
+  <div>
     <h4>Word Cloud</h4>
-    <canvas id="myCloud" width="150px" height="50px"><a class="zc-ref" href="#"></a></canvas>
+    <div class="col-sm-6">
+      <img class="img-responsive" src={{positiveImg}}>
+    </div>
+
+    <div class="col-sm-6">
+      <img class="img-responsive" src={{negativeImg}}>
+    </div>
   </div>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
     <h4></h4>
-    <p>Developed by Jitendra, Pranith</p>
+    <p>Developed by Pranith kumar,Jitendra Klayan</p>
   </footer>
 
   <!-- End page content -->
@@ -202,38 +208,5 @@ labels:[{% for item in labels %}
 </script>
 
 <!-- word cloud -->
-<script>
-    var myConfig = {
-    "graphset":[
-    {
-      "type":"wordcloud",
-      "options":{
-        "style":{
-          "tooltip":{
-            visible: true,
-            text: '%text: %hits'
-          }
-        },
-        "words":[
-            {
-              {% for item in aspects %}
-                "text":"{{item[0]}}",
-                "count":"{{item[1]}}"
-              {% endfor %}
-            }
-          ]
-        }
-      }
-    ]
-    };
-
-    zingchart.render({
-      id: 'myCloud',
-      data: myConfig,
-      height: '100%',
-      width: '100%'
-    });
-</script>
-
 </body>
 </html>
