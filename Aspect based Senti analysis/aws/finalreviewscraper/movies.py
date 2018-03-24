@@ -51,8 +51,8 @@ def chart():
     global aspects_wc
     now = time.time()
     old = now - 7 * 24 * 60 * 60
-    positive = {}
-    negative = {}
+    positive = {'None':1}
+    negative = {'None':1}
     print "aspects wc:"
     print aspects_wc
 
