@@ -41,7 +41,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
     <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard"></i>  Overview</a>
     <a href="/chart" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart"></i>  Chart</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table"></i>  Tables</a>
     <a href="https://github.com/pranithkumar/Aspect-Based-Sentiment-Analysis" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-o"></i>  Documentation</a>
     <a href="https://github.com/pranithkumar/Aspect-Based-Sentiment-Analysis" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-code-o"></i>  Code Repository</a>
     <a href="/" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search"></i>  Home</a><br><br>
@@ -62,12 +61,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
   <!-- Chart to show sentiments -->
   <div class="w3-container">
-    <h4>Charts</h4>
-    <canvas id="myChart" width="150px" height="50px"></canvas>
-    <hr>
+    <div class="col-lg-4 col-sm-4">
+      <h3 class="section-heading">Product Details:</h3>
+      <img class="img-responsive img-rounded" src={{product[1]}} width="270" height="338">
+      <h5>Product Name : {{product[0]}}</h5>
+    </div>
+    <div class="col-lg-8 col-sm-8">
+      <h4>Sentiment Chart</h4>
+      <canvas id="myChart" width="150px" height="50px"></canvas>
+    </div>
   </div>
-
+  <hr>
   <div class="w3-container">
+    <div>
     <h4>Top mentioned Aspects</h4>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <thead>
@@ -86,6 +92,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </tbody>
     </table><br>
     <button class="w3-button w3-dark-grey">More Aspects  <i class="fa fa-arrow-right"></i></button>
+  </div>
   </div>
 
   <!-- Reviews -->
@@ -181,14 +188,18 @@ $(document).ready(function(){$("#dataTable").DataTable()});
             {% endfor %}],
             datasets: [{
                 label: 'Positive',
-                backgroundColor: 'rgb(26, 255, 26,0.8)',
+                backgroundColor: 'rgb(26, 255, 26,0.65)',
+                borderColor: 'rgb(2, 225, 26,1)',
+                borderWidth: 0.5,
                 stack: 'Stack 0',
                 data : [{% for item in values %}
                           {{item[0]}},
                         {% endfor %}]
             }, {
                 label: 'Negative',
-                backgroundColor: 'rgb(255, 26, 26,0.8)',
+                backgroundColor: 'rgb(255, 26, 26,0.5)',
+                borderColor: 'rgb(255, 26, 26,1)',
+                borderWidth: 0.5,
                 stack: 'Stack 0',
                 data : [{% for item in values %}
                           {{item[1]}},

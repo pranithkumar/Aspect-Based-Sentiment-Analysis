@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 app = Flask(__name__, template_folder='.',static_url_path='/static')
+
 aspects_list = {}
 aspects_wc = {}
 aspects_top = []
@@ -122,17 +123,17 @@ def success(name):
             data = f.read().split("\n")
             f.close()
             print "data:"+str(data[0])
-            name = data[0]
-            name = re.sub(r'[\']', "", name)
-            os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+            name_new = data[0]
+            name_new = re.sub(r'[\']', "", name_new)
+            os.system("scrapy crawl flipkartscraper -a ip='"+name_new+"' -o data/flipkart/"+fileflipkart+".json")
     else:
         f = open("product_details.txt","r")
         data = f.read().split("\n")
         f.close()
         print "data:"+str(data[0])
-        name = data[0]
-        name = re.sub(r'[\']', "", name)
-        os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+        name_new = data[0]
+        name_new = re.sub(r'[\']', "", name_new)
+        os.system("scrapy crawl flipkartscraper -a ip='"+name_new+"' -o data/flipkart/"+fileflipkart+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
@@ -145,7 +146,7 @@ def success(name):
         if i < 100:
             navg=0.0
             pavg=0.0
-            if i<10:
+            if i<15:
                 aspects_top.append((key.encode('utf-8'),len(value)))
             sent_score_pos=[]
             sent_score_neg=[]
@@ -161,19 +162,21 @@ def success(name):
                 pavg = numpy.sum(sent_score_pos)/(len(sent_score_pos)+len(sent_score_neg))
             if sent_score_neg:
                 navg = numpy.sum(sent_score_neg)/(len(sent_score_pos)+len(sent_score_neg))
-            if i<10:
+            if i<15:
                 aspects_list[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             aspects_wc[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             i=i+1
 
+    read_dictionary = numpy.load('product_details.npy').item()
+    product_link = read_dictionary[name]
 
     #rendering data from files to the html output
     if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
-        return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
+        return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
     elif os.stat("data/flipkart/"+fileflipkart+".json").st_size == 0:
-        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=[], labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
+        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=[], labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
     else:
-        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)
+        return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
 
     #rendering data from files to the html output
     #return render_template('dashboard.html', AmazonReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values())

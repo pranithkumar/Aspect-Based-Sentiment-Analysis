@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import html2text
+import numpy as np
 
 
 class AmazonscraperSpider(scrapy.Spider):
@@ -42,6 +43,9 @@ class AmazonscraperSpider(scrapy.Spider):
         f.write(str(title)+"\n")
         f.write(pic_link[0])
         f.close()
+        temp_dict = np.load('product_details.npy').item()
+        temp_dict.update({self.ip:[title,pic_link[0]]})
+        np.save('product_details.npy', temp_dict) 
         link = link.replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
         
         for i in range(1,11):

@@ -42,7 +42,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
     <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard"></i>  Overview</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart"></i>  Chart</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-table"></i>  Tables</a>
     <a href="https://github.com/pranithkumar/Aspect-Based-Sentiment-Analysis" class="w3-bar-item w3-button w3-padding"><i class="fa fa-folder-o"></i>  Documentation</a>
     <a href="https://github.com/pranithkumar/Aspect-Based-Sentiment-Analysis" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-code-o"></i>  Code Repository</a>
     <a href="/" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search"></i>  Home</a><br><br>
@@ -75,20 +74,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <h4 class="section-heading">Bar Plot</h4>
       <hr class="section-heading-spacer">
       <canvas id="myChart" width="150px" height="150px"></canvas>
-      <hr>
     </div>
   </div>
-
+  <br/>
+    <hr>
+    <br/>
   <div>
-    <h4>Word Cloud</h4>
+    <div class="w3-container">
+      <h4>Word Cloud</h4>
+    </div>
+    <br>
     <div class="col-sm-6">
+      <div class="caption" align="middle">
+        <p>Words with Positive Sentiments</p>
+      </div>
       <img class="img-responsive" src={{positiveImg}}>
     </div>
 
     <div class="col-sm-6">
+      <div class="caption" align="middle">
+        <p>Words with Negative Sentiments</p>
+      </div>
       <img class="img-responsive" src={{negativeImg}}>
     </div>
   </div>
+  <hr>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
@@ -146,6 +156,11 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
+        title: {
+            display: true,
+            text: 'Top Mentioned Aspects'
+        },
+        responsive: true,
         scales: {
             yAxes: [{
                 ticks: {
@@ -165,14 +180,18 @@ labels:[{% for item in labels %}
         {% endfor %}],
         datasets: [{
             label: 'Positive',
-            backgroundColor: 'rgb(26, 255, 26,0.8)',
+            backgroundColor: 'rgb(26, 255, 26,0.65)',
+            borderColor: 'rgb(2, 225, 26,1)',
+            borderWidth: 0.5,
             stack: 'Stack 0',
             data : [{% for item in values %}
                       {{item[0]}},
                     {% endfor %}]
         }, {
             label: 'Negative',
-            backgroundColor: 'rgb(255, 26, 26,0.8)',
+            backgroundColor: 'rgb(255, 26, 26,0.6)',
+            borderColor: 'rgb(255, 26, 26,1)',
+            borderWidth: 0.5,
             stack: 'Stack 0',
             data : [{% for item in values %}
                       {{item[1]}},

@@ -133,13 +133,13 @@ def get_aspects(Amazon,Flipkart,input_text):
 			STOPWORDS.add(word)
 
 	#Using preprocessed text for categorization
-	if os.stat(Amazon).st_size == 0:
-		reviews = dp.dataframeflipkart(Flipkart)
-	elif os.stat(Flipkart).st_size == 0:
-		reviews = dp.dataframeamazon(Amazon)
-	else:
+	if (os.stat(Amazon).st_size != 0) and (os.stat(Flipkart).st_size != 0):
 		reviews = dp.dataframecomplete(Amazon,Flipkart)
-
+	elif os.stat(Flipkart).st_size != 0:
+		reviews = dp.dataframeflipkart(Flipkart)
+	else:
+		reviews = dp.dataframeamazon(Amazon)
+	
 	#initnalizing the aspects dictionary
 	aspects_dict = {}
 

@@ -113,17 +113,17 @@ def success(name):
             data = f.read().split("\n")
             f.close()
             print "data:"+str(data[0])
-            name = data[0]
-            name = re.sub(r'[\']', "", name)
-            os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+            name_new = data[0]
+            name_new = re.sub(r'[\']', "", name_new)
+            os.system("scrapy crawl flipkartscraper -a ip='"+name_new+"' -o data/flipkart/"+fileflipkart+".json")
     else:
         f = open("product_details.txt","r")
         data = f.read().split("\n")
         f.close()
         print "data:"+str(data[0])
-        name = data[0]
-        name = re.sub(r'[\']', "", name)
-        os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
+        name_new = data[0]
+        name_new = re.sub(r'[\']', "", name_new)
+        os.system("scrapy crawl flipkartscraper -a ip='"+name_new+"' -o data/flipkart/"+fileflipkart+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
 
@@ -158,9 +158,8 @@ def success(name):
             aspects_wc[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             i=i+1
 
-    fp = open("product_details.txt")
-    product_link = fp.read().split("\n")
-    fp.close()
+    read_dictionary = numpy.load('product_details.npy').item()
+    product_link = read_dictionary[name]
 
     #rendering data from files to the html output
     if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
