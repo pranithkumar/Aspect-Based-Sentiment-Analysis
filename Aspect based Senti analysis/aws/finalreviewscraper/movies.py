@@ -137,10 +137,11 @@ def success(name):
 
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
-        if i < 15:
+        if i < 100:
             navg=0.0
             pavg=0.0
-            aspects_top.append((key.encode('utf-8'),len(value)))
+            if i<10:
+                aspects_top.append((key.encode('utf-8'),len(value)))
             sent_score_pos=[]
             sent_score_neg=[]
             for ke in aspects_dict[key].keys():
@@ -155,7 +156,9 @@ def success(name):
                 pavg = numpy.sum(sent_score_pos)/(len(sent_score_pos)+len(sent_score_neg))
             if sent_score_neg:
                 navg = numpy.sum(sent_score_neg)/(len(sent_score_pos)+len(sent_score_neg))
-            aspects_list[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
+            if i<10:
+                aspects_list[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
+            aspects_wc[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             i=i+1
 
 
