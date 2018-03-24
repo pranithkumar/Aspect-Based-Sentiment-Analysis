@@ -44,6 +44,7 @@ def login():
 
 @app.route('/chart')
 def chart():
+    os.chdir('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/')
     global aspects_wc
     aspects_wc.clear()
     now = time.time()
@@ -118,6 +119,7 @@ def success(name):
             f.close()
             print "data:"+str(data[0])
             name = data[0]
+            name = re.sub(r'[\']', "", name)
             os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
     else:
         f = open("product_details.txt","r")
@@ -125,6 +127,7 @@ def success(name):
         f.close()
         print "data:"+str(data[0])
         name = data[0]
+        name = re.sub(r'[\']', "", name)
         os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
@@ -155,7 +158,7 @@ def success(name):
             aspects_list[key.encode('utf-8')] = (round(pavg,3),round(navg,3))
             i=i+1
 
-            
+
     #rendering data from files to the html output
     if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
         return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top)

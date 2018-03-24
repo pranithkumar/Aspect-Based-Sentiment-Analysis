@@ -104,7 +104,6 @@ def success(name):
 
     fileflipkart = name + '_flipkart'
     fileflipkart = re.sub(r'[^a-zA-Z0-9]', "_", fileflipkart)
-
     #check if the file already exists
     if os.path.exists("data/flipkart/"+fileflipkart+".json"):
         stat = os.stat("data/flipkart/"+fileflipkart+".json")
@@ -116,6 +115,7 @@ def success(name):
             f.close()
             print "data:"+str(data[0])
             name = data[0]
+            name = re.sub(r'[\']', "", name)
             os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
     else:
         f = open("product_details.txt","r")
@@ -123,6 +123,7 @@ def success(name):
         f.close()
         print "data:"+str(data[0])
         name = data[0]
+        name = re.sub(r'[\']', "", name)
         os.system("scrapy crawl flipkartscraper -a ip='"+name+"' -o data/flipkart/"+fileflipkart+".json")
 
     aspects_dict = get_aspects("data/amazon/"+fileamazon+".json","data/flipkart/"+fileflipkart+".json",name)
