@@ -45,7 +45,6 @@ def login():
 @app.route('/chart')
 def chart():
     global aspects_wc
-    aspects_wc.clear()
     now = time.time()
     old = now - 7 * 24 * 60 * 60
     positive = {}

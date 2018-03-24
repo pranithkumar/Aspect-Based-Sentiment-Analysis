@@ -46,7 +46,6 @@ def login():
 def chart():
     os.chdir('/home/ubuntu/Aspect-Based-Sentiment-Analysis/Aspect based Senti analysis/aws/finalreviewscraper/')
     global aspects_wc
-    aspects_wc.clear()
     now = time.time()
     old = now - 7 * 24 * 60 * 60
     positive = {}
@@ -134,6 +133,7 @@ def success(name):
 
     del aspects_top[:]
     aspects_list.clear()
+    aspects_wc.clear()
 
     i=0
     for key, value in sorted(aspects_dict.iteritems(), key=lambda (k,v): (v,k),reverse = True):
