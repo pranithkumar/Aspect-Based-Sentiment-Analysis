@@ -2,7 +2,9 @@
 import scrapy
 import html2text,ast
 import numpy as np
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class AmazonscraperSpider(scrapy.Spider):
     name = 'amazonscraper'
@@ -39,9 +41,12 @@ class AmazonscraperSpider(scrapy.Spider):
         global link
         global title
         pic_link = response.xpath('//div[contains(@class,"imgTagWrapper")]/img/@data-a-dynamic-image').extract()
-        pic = ast.literal_eval(pic_link[0].encode('utf-8')).keys()[0]
+        if len(pic_link)!=0:
+            pic = ast.literal_eval(pic_link[0].encode('utf-8')).keys()[0]
+        else:
+            pic = '#'
         f = open("product_details.txt","w")
-        f.write(str(title)+"\n")
+        f.write(str(title).encode('utf-8','ignore')+"\n")
         f.write(pic)
         f.close()
         temp_dict = np.load('product_details.npy').item()
