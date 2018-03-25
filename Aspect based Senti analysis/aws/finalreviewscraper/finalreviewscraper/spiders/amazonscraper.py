@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import html2text
+import html2text,ast
 import numpy as np
 import sys
 reload(sys)
