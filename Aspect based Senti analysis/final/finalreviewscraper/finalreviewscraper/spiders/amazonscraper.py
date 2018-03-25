@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import html2text
+import html2text,ast
 import numpy as np
 
 
@@ -38,13 +38,14 @@ class AmazonscraperSpider(scrapy.Spider):
     def get_details(self,response):
         global link
         global title
-        pic_link = response.xpath('//div[contains(@class,"imgTagWrapper")]/img/@data-old-hires').extract()
+        pic_link = response.xpath('//div[contains(@class,"imgTagWrapper")]/img/@data-a-dynamic-image').extract()
+        pic = ast.literal_eval(pic_link[0].encode('utf-8')).keys()[0]
         f = open("product_details.txt","w")
         f.write(str(title)+"\n")
-        f.write(pic_link[0])
+        f.write(pic)
         f.close()
         temp_dict = np.load('product_details.npy').item()
-        temp_dict.update({self.ip:[title,pic_link[0]]})
+        temp_dict.update({self.ip:[title,pic]})
         np.save('product_details.npy', temp_dict) 
         link = link.replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
         

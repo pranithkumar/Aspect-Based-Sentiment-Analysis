@@ -23,8 +23,8 @@ class FlipkartscraperSpider(scrapy.Spider):
 		#print links[0]
 		#storing the titles and product links of search results in output.txt
 		f=open("flipkart_titles_links.txt","w")
-		for i in range(0,len(titles)):
-			f.write(str(titles[i])+"\n"+str(links[i])+"\n")
+		for i in range(0,len(titles)-3):
+			f.write(str(titles[i].encode('utf-8','ignore'))+"\n"+str(links[i].encode('utf-8','ignore'))+"\n")
 		pid = links[0].split("?")[1].split("&")[0].split("=")[1]
 		n=100
 		#required attributes for review extraction
