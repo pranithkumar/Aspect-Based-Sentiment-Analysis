@@ -42,8 +42,8 @@ def login():
     user = request.args.get('nm')
     return redirect(url_for('success',name = user))
 
-@app.route('/chart')
-def chart():
+@app.route('/chart/<name>')
+def chart(name):
     global aspects_wc
     now = time.time()
     old = now - 7 * 24 * 60 * 60
@@ -72,7 +72,7 @@ def chart():
     else:
         gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
 
-    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg="static/img/pos/"+product_name+".png",negativeImg="static/img/neg/"+product_name+".png")
+    return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg=product_name,negativeImg=product_name)
 
 #function that executes the spiders and stores the output in json files
 @app.route('/success/<name>')
@@ -163,11 +163,11 @@ def success(name):
 
     #rendering data from files to the html output
     if os.stat("data/amazon/"+fileamazon+".json").st_size == 0:
-        return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
+        return render_template('dashboard.html', AmazonReviews=[], FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link,name=name)
     elif os.stat("data/flipkart/"+fileflipkart+".json").st_size == 0:
-        return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=[], labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
+        return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=[], labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link,name=name)
     else:
-        return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link)
+        return render_template('dashboard.html', AmazonReviews=json.load(open("data/amazon/"+fileamazon+".json")), FlipkartReviews=json.load(open("data/flipkart/"+fileflipkart+".json")), labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,product=product_link,name=name)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

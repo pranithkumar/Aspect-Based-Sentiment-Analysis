@@ -73,14 +73,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="caption" align="middle">
         <p>Words with Positive Sentiments</p>
       </div>
-      <img class="img-responsive" src={{positiveImg}}>
+      <img class="img-responsive" src="{{url_for('static',filename='img/pos/'+positiveImg+'.png')}}">
     </div>
 
     <div class="col-sm-6">
       <div class="caption" align="middle">
         <p>Words with Negative Sentiments</p>
       </div>
-      <img class="img-responsive" src={{negativeImg}}>
+      <img class="img-responsive" src="{{url_for('static',filename='img/neg/'+negativeImg+'.png')}}">
     </div>
   </div>
   <hr>
