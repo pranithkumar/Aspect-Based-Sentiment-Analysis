@@ -52,8 +52,8 @@ def chart(name):
     global aspects_wc
     now = time.time()
     old = now - 7 * 24 * 60 * 60
-    positive = {'#':1}
-    negative = {'#':1}
+    positive = {}
+    negative = {}
     print "aspects wc:"
     print aspects_wc
 
@@ -78,7 +78,7 @@ def chart(name):
             os.remove("static/img/neg/"+product_name+".png")
             gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
     else:
-	   gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
+	gen_word_cloud("thumbdown.png",grey_color_func_neg,"static/img/neg/"+product_name+".png",negative)
     return render_template('charts.html',labels=aspects_list.keys(), values=aspects_list.values(), aspects=aspects_top,positiveImg=product_name,negativeImg=product_name)
 
 #function that executes the spiders and stores the output in json files
