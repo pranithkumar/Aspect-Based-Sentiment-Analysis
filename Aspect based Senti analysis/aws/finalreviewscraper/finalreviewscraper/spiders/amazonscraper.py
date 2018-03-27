@@ -10,7 +10,7 @@ class AmazonscraperSpider(scrapy.Spider):
     name = 'amazonscraper'
     allowed_domains = ['amazon.in']
     start_urls = ["https://www.amazon.in/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords="]
-    link = ' '
+    plink = ' '
     title = ' '
 
     def start_requests(self):
@@ -18,7 +18,7 @@ class AmazonscraperSpider(scrapy.Spider):
             yield scrapy.Request(url+self.ip, dont_filter=True,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
 
     def parse(self, response):
-        global link
+        global plink
         global title
         #extracting titles of all products
         titles = response.xpath('//a[contains(@class,"a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal")]/h2/text()').extract()
@@ -30,17 +30,19 @@ class AmazonscraperSpider(scrapy.Spider):
 
         for i in range(0,len(links)):
             if '/dp/' in links[i]:
-                link = links[i]
+                plink = links[i]
                 title = titles[i]
                 break
-        print link
-        request = scrapy.Request(link,callback=self.get_details,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+        print plink
+        request = scrapy.Request(plink,callback=self.get_details,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
         yield request
 
     def get_details(self,response):
-        global link
+        global plink
         global title
         pic_link = response.xpath('//div[contains(@class,"imgTagWrapper")]/img/@data-a-dynamic-image').extract()
+	print "\n\n\n\n\n\n\npiclink:"
+	print pic_link
         if len(pic_link)!=0:
             pic = ast.literal_eval(pic_link[0].encode('utf-8')).keys()[0]
         else:
@@ -52,10 +54,10 @@ class AmazonscraperSpider(scrapy.Spider):
         temp_dict = np.load('product_details.npy').item()
         temp_dict.update({self.ip:[title,pic]})
         np.save('product_details.npy', temp_dict) 
-        link = link.replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
+        plink = plink.replace('/dp/','/product-reviews/') + '/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
         
         for i in range(1,11):
-            request = scrapy.Request(link+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+            request = scrapy.Request(plink+'&pageNumber='+str(i),callback=self.scrape_reviews,headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
             yield request
 
     def scrape_reviews(self,response):
@@ -86,3 +88,4 @@ class AmazonscraperSpider(scrapy.Spider):
             "verification":verification,
             "review":review
         }
+
