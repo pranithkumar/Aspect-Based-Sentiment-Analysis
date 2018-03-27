@@ -1,19 +1,64 @@
-u'phone'
-u'product'
-u'amazon'
-u'quality'
-u'battery backup'
-u'everything'
-u'camera'
-u'data'
-u'price'
-u'ios'
-u'delivery'
-u'jet'
-u'colour'
-u'seller'
-u'experience'
-1
-{'month': (0.7, 0.0), 'gb': (0.138, -0.167), 'fear': (0.354, -0.05), 'issues': (0.473, -0.042), 'thank': (0.417, 0.0), 'iphones': (0.0, -0.167), 'ram management': (0.3, -0.111), 'color': (0.125, -0.083), 'condition': (0.85, 0.0), 'mail': (0.461, 0.0), 'customer': (0.16, 0.0), 'heating issues': (0.579, -0.021), 'amazon': (0.484, -0.033), 'desk': (0.1, 0.0), 'years': (0.0, -0.175), 'bank': (0.0, 0.0), 'cable': (0.388, 0.0), 'item': (0.833, 0.0), 'packaging phone': (0.15, 0.0), 'team': (0.461, 0.0), 'tray': (0.461, 0.0), 'flipkart': (0.45, 0.0), 'force': (0.167, 0.0), 'phones': (0.237, -0.125), 'year': (0.375, -0.35), 'duration': (0.579, -0.021), 'consumers': (0.0, -0.3), 'pictures': (0.3, -0.111), 'please': (0.1, 0.0), 'seller': (0.184, -0.042), 'everything': (0.323, -0.05), 'safety': (0.15, 0.0), 'issue': (0.0, -0.3), 'exchange': (0.537, 0.0), 'ios': (0.442, -0.083), 'screen': (0.35, -0.1), 'night': (0.0, 0.0), 'guess': (0.1, -0.05), 'replacement service': (0.461, 0.0), 'packing': (0.55, 0.0), 'interface': (0.183, -0.167), 'care': (0.1, 0.0), 'box': (0.113, -0.063), 'voice': (0.579, -0.021), 'jet': (0.517, -0.017), 'k': (0.0, -0.167), 'days': (0.5, -0.125), 'experience': (0.402, -0.079), 'times': (0.0, -0.263), 'thing': (0.1, 0.0), 'products': (0.148, 0.0), 'warranty': (0.329, 0.0), 'features': (0.445, 0.0), 'battery': (0.375, -0.083), 'diwali': (0.7, 0.0), 'one': (0.25, 0.0), 'packaging': (0.375, -0.037), 'quality': (0.527, -0.048), 'use': (0.617, 0.0), 'management': (0.533, 0.0), 'service': (0.483, -0.133), 'spots': (0.0, -0.3), 'battery backup': (0.528, -0.028), 'camera': (0.553, -0.035), 'call': (0.579, -0.021), 'lot': (0.0, -0.167), 'store': (0.0, 0.0), 'website': (0.4, 0.0), 'life': (0.7, 0.0), 'brand': (0.162, -0.033), 'delivery': (0.49, -0.043), 'phone': (0.331, -0.125), 'scratches': (0.1, 0.0), 'case': (0.1, 0.0), 'challenge': (0.1, 0.0), 'work': (0.55, 0.0), 'problem': (0.0, 0.0), 'piece': (0.0, 0.0), 'tat': (0.15, 0.0), 'compare': (0.533, 0.0), 'site': (0.0, -0.3), 'min': (0.7, 0.0), 'thanks': (0.232, 0.0), 'sound': (0.458, 0.0), 'speaker': (0.579, -0.021), 'online': (0.243, 0.0), 'performance': (0.428, -0.065), 'android': (0.372, -0.167), 'product': (0.35, -0.096), 'beauty': (0.354, -0.05), 'price': (0.601, 0.0), 'hang': (0.05, -0.31), 'effect': (0.579, -0.021), 'hand': (0.3, -0.111), 'battery life': (0.34, -0.075), 'user': (0.0, -0.1), 'data': (0.32, -0.04), 'colour': (0.448, -0.029), 'cover': (0.1, 0.0), 'sale': (0.633, 0.0)}
 aspects wc:
-{'month': (0.7, 0.0), 'gb': (0.138, -0.167), 'fear': (0.354, -0.05), 'issues': (0.473, -0.042), 'thank': (0.417, 0.0), 'iphones': (0.0, -0.167), 'ram management': (0.3, -0.111), 'color': (0.125, -0.083), 'condition': (0.85, 0.0), 'mail': (0.461, 0.0), 'customer': (0.16, 0.0), 'heating issues': (0.579, -0.021), 'amazon': (0.484, -0.033), 'desk': (0.1, 0.0), 'years': (0.0, -0.175), 'bank': (0.0, 0.0), 'cable': (0.388, 0.0), 'item': (0.833, 0.0), 'packaging phone': (0.15, 0.0), 'team': (0.461, 0.0), 'tray': (0.461, 0.0), 'flipkart': (0.45, 0.0), 'force': (0.167, 0.0), 'phones': (0.237, -0.125), 'year': (0.375, -0.35), 'duration': (0.579, -0.021), 'consumers': (0.0, -0.3), 'pictures': (0.3, -0.111), 'please': (0.1, 0.0), 'seller': (0.184, -0.042), 'everything': (0.323, -0.05), 'safety': (0.15, 0.0), 'issue': (0.0, -0.3), 'exchange': (0.537, 0.0), 'ios': (0.442, -0.083), 'screen': (0.35, -0.1), 'night': (0.0, 0.0), 'guess': (0.1, -0.05), 'replacement service': (0.461, 0.0), 'packing': (0.55, 0.0), 'interface': (0.183, -0.167), 'care': (0.1, 0.0), 'box': (0.113, -0.063), 'voice': (0.579, -0.021), 'jet': (0.517, -0.017), 'k': (0.0, -0.167), 'days': (0.5, -0.125), 'experience': (0.402, -0.079), 'times': (0.0, -0.263), 'thing': (0.1, 0.0), 'products': (0.148, 0.0), 'warranty': (0.329, 0.0), 'features': (0.445, 0.0), 'battery': (0.375, -0.083), 'diwali': (0.7, 0.0), 'one': (0.25, 0.0), 'packaging': (0.375, -0.037), 'quality':
+{}
+positive:
+{}
+aspects wc:
+{}
+positive:
+{}
+aspects wc:
+{}
+positive:
+{}
+aspects wc:
+{}
+positive:
+{}
+aspects wc:
+{}
+positive:
+{}
+data:Fastrack Black Magic Analog Black Dial Men's Watch - NE3089SL05
+u'product'
+u'dial'
+u'look'
+u'strap'
+u'flipkart'
+u'delivery'
+u'size'
+u'price'
+u'quality'
+u'review'
+u'battery'
+u'fastrack'
+u'wrist'
+u'looks'
+u'glass'
+1
+{'warranty': (0.6, 0.0), 'ne3089sl05': (0.0, -0.167), 'show': (0.5, -0.083), 'scratch': (0.0, -0.292), 'proportionate': (0.0, -0.189), 'looks': (0.379, -0.024), 'years': (0.4, 0.0), 'seller': (0.0, 0.0), 'make sure': (0.417, 0.0), 'style': (0.833, 0.0), 'thank': (0.25, 0.0), 'reasons': (0.0, 0.0), 'cum': (0.425, 0.0), 'thousands': (0.425, 0.0), 'customers': (0.0, 0.0), 'choice': (0.656, 0.0), 'amazon': (0.6, 0.0), 'bit': (0.0, -0.188), 'month': (0.05, -0.188), 'modifications': (0.425, -0.083), 'magic': (0.468, 0.0), 'gift': (0.607, 0.0), 'leather': (0.519, -0.063), 'night': (0.5, -0.083), 'side': (0.125, -0.094), 'flipkart': (0.35, -0.35), 'weight': (0.218, -0.142), 'people': (0.5, 0.0), 'magic analog': (0.389, 0.0), 'rate': (0.4, -0.056), 'design': (0.6, 0.0), 'home': (0.375, 0.0), 'arm': (0.0, -0.4), 'analog': (0.0, -0.167), 'dial': (0.454, -0.048), 'clock': (0.0, -0.4), 'review': (0.26, -0.043), 'please': (0.136, 0.0), 'thickness': (0.0, -0.3), 'size': (0.333, -0.183), 'men': (0.0, -0.167), 'water': (0.122, -0.017), 'ws': (0.136, 0.0), 'service': (0.3, -0.15), 'package': (0.0, 0.0), 'days': (0.0, -0.292), 'experience': (0.2, -0.233), 'pics': (0.136, 0.0), 'thing': (0.275, -0.117), 'lighting': (0.0, -0.396), 'warranty card': (0.0, 0.0), 'leather strap': (0.387, -0.033), 'battery': (0.15, -0.212), 'image': (0.556, 0.0), 'matter': (0.0, -0.25), 'strap': (0.264, -0.124), 'sober': (0.154, 0.0), 'belt colour': (0.656, 0.0), 'quality': (0.488, -0.057), 'belt': (0.54, -0.08), 'deal': (0.611, 0.0), 'certificate': (0.0, 0.0), 'mark': (0.458, 0.0), 'friend': (0.75, 0.0), 'needle': (0.0, -0.396), 'delivery': (0.413, -0.048), 'glass': (0.083, -0.16), 'price range': (0.45, -0.073), 'case': (0.367, -0.1), 'look': (0.456, -0.012), 'places': (0.0, 0.0), 'look cool': (0.458, 0.0), 'quality watches': (0.0, 0.0), 'piece': (0.214, 0.0), 'cons': (0.469, 0.0), 'site': (0.8, 0.0), 'something': (0.5, 0.0), 'bucks': (0.656, 0.0), 'times': (0.0, -0.292), 'guarantee': (0.0, 0.0), 'fastrack': (0.625, 0.0), 'na': (0.5, -0.1), 'thanks': (0.35, 0.0), 'yes dail': (0.0, 0.0), 'nice': (0.314, 0.0), 'week': (0.05, -0.35), 'product': (0.417, -0.109), 'star': (0.0, 0.0), 'price': (0.233, -0.033), 'wrist': (0.273, -0.067), 'eye catchy': (0.25, -0.083), 'types': (0.144, -0.1), 'charges': (0.0, 0.0), 'colour': (0.0, -0.292), 'metal': (0.0, -0.292), 'feels': (0.525, 0.0), 'order': (0.25, -0.025), 'person': (0.667, -0.1), 'portion': (0.5, -0.2), 'catchy looks': (0.25, -0.083)}
+aspects wc:
+{'warranty': (0.6, 0.0), 'ne3089sl05': (0.0, -0.167), 'show': (0.5, -0.083), 'scratch': (0.0, -0.292), 'proportionate': (0.0, -0.189), 'looks': (0.379, -0.024), 'years': (0.4, 0.0), 'seller': (0.0, 0.0), 'make sure': (0.417, 0.0), 'style': (0.833, 0.0), 'thank': (0.25, 0.0), 'reasons': (0.0, 0.0), 'cum': (0.425, 0.0), 'thousands': (0.425, 0.0), 'customers': (0.0, 0.0), 'choice': (0.656, 0.0), 'amazon': (0.6, 0.0), 'bit': (0.0, -0.188), 'month': (0.05, -0.188), 'modifications': (0.425, -0.083), 'magic': (0.468, 0.0), 'gift': (0.607, 0.0), 'leather': (0.519, -0.063), 'night': (0.5, -0.083), 'side': (0.125, -0.094), 'flipkart': (0.35, -0.35), 'weight': (0.218, -0.142), 'people': (0.5, 0.0), 'magic analog': (0.389, 0.0), 'rate': (0.4, -0.056), 'design': (0.6, 0.0), 'home': (0.375, 0.0), 'arm': (0.0, -0.4), 'analog': (0.0, -0.167), 'dial': (0.454, -0.048), 'clock': (0.0, -0.4), 'review': (0.26, -0.043), 'please': (0.136, 0.0), 'thickness': (0.0, -0.3), 'size': (0.333, -0.183), 'men': (0.0, -0.167), 'water': (0.122, -0.017), 'ws': (0.136, 0.0), 'service': (0.3, -0.15), 'package': (0.0, 0.0), 'days': (0.0, -0.292), 'experience': (0.2, -0.233), 'pics': (0.136, 0.0), 'thing': (0.275, -0.117), 'lighting': (0.0, -0.396), 'warranty car.099), 'backup': (0.42, -0.028), 'processor': (0.495, -0.05), 'software': (0.289, -0.103), 'features': (0.353, -0.055), 'battery': (0.323, -0.055), 'quality': (0.379, -0.029), 'use': (0.199, -0.063), 'front camera': (0.226, -0.173), 'apps': (0.284, -0.024), 'battery backup': (0.365, -0.078), 'camera': (0.362, -0.027), 'lot': (0.338, -0.06), 'memory': (0.35, -0.095), 'life': (0.348, -0.099), 'way': (0.295, -0.127), 'company': (0.216, -0.217), 'phone': (0.303, -0.083), 'price range': (0.406, -0.039), 'case': (0.329, -0.081), 'budget': (0.427, -0.041), 'devices': (0.196, -0.061), 'ui': (0.309, -0.085), 'video': (0.267, -0.082), 'problem': (0.18, -0.078), 'display': (0.359, -0.034), 'cons': (0.153, -0.125), 'ram': (0.469, -0.029), 'glass': (0.325, -0.073), 'speakers': (0.286, -0.125), 'end': (0.344, -0.03), 'things': (0.342, -0.078), 'storage': (0.401, -0.063), 'feature': (0.309, -0.092), 'note': (0.313, -0.1), 'performance': (0.377, -0.058), 'android': (0.4, 0.0), 'sim': (0.313, -0.085), 'product': (0.466, -0.022), 'gb ram': (0.462, 0.0), 'price': (0.298, -0.043), 'lag': (0.377, -0.05), 'update': (0.281, -0.064), 'hand': (0.4, -0.017), 'battery life': (0.297, -0.059), 'device': (0.309, -0.082), 'data': (0.247, -0.058), 'earphones': (0.3, -0.143), 'photos': (0.392, -0.011), 'mobile': (0.334, -0.066), 'light': (0.336, -0.004), 'wifi': (0.23, -0.066), 'cover': (0.125, -0.12)}
+positive:
+{'sims': 0.138, 'asphalt': 0.441, 'money': 0.319, 'focus': 0.333, 'feature': 0.309, 'gb': 0.394, 'issues': 0.383, 'slot': 0.287, 'everything': 0.45, 'charge': 0.367, 'version': 0.309, 'usage': 0.214, 'sound': 0.375, 'smartphone': 0.366, 'amazon': 0.477, 'fingerprint': 0.464, 'front': 0.389, 'bit': 0.274, 'issue': 0.317, 'emui': 0.529, 'mode': 0.183, 'side': 0.261, 'looks': 0.288, 'fingerprint scanner': 0.346, 'people': 0.34, 'phones': 0.281, 'design': 0.443, 'pictures': 0.418, 'review': 0.299, 'cameras': 0.425, 'pros': 0.44, 'huawei': 0.374, 'sim slot': 0.248, 'sensor': 0.452, 'seconds': 0.153, 'screen': 0.284, 'effect': 0.248, 'hours': 0.166, 'card': 0.248, 'box': 0.4, 'months': 0.217, 'days': 0.341, 'experience': 0.375, 'thing': 0.314, 'range': 0.465, 'games': 0.289, 'backup': 0.42, 'processor': 0.495, 'software': 0.289, 'features': 0.353, 'battery': 0.323, 'quality': 0.379, 'use': 0.199, 'front camera': 0.226, 'apps': 0.284, 'battery backup': 0.365, 'camera': 0.362, 'way': 0.295, 'memory': 0.35, 'life': 0.348, 'lot': 0.338, 'company': 0.216, 'phone': 0.303, 'price range': 0.406, 'case': 0.329, 'budget': 0.427, 'devices': 0.196, 'ui': 0.309, 'light': 0.336, 'video': 0.267, 'problem': 0.18, 'display': 0.359, 'cons': 0.153, 'ram': 0.469, 'update': 0.281, 'redmi': 0.179, 'end': 0.344, 'things': 0.342, 'storage': 0.401, 'amount': 0.29, 'note': 0.313, 'performance': 0.377, 'android': 0.4, 'sim': 0.313, 'product': 0.466, 'gb ram': 0.462, 'price': 0.298, 'lag': 0.377, 'speakers': 0.286, 'hand': 0.4, 'battery life': 0.297, 'device': 0.309, 'data': 0.247, 'earphones': 0.3, 'glass': 0.325, 'mobile': 0.334, 'os': 0.338, 'wifi': 0.23, 'cover': 0.125, 'photos': 0.392}
+data:Dell Ms116 275-BBCB Optical Mouse
+u'product'
+u'quality'
+u'surface'
+u'service'
+u'price'
+u'click'
+u'gamers'
+u'months'
+u'buttons'
+u'desktop'
+u'wire'
+u'buy'
+u'amazon'
+u'brands'
+u'pad'
+1
+{'laptop': (0.3, -0.05), 'years': (0.1, 0.0), 'looks': (0.35, -0.167), 'desktop use': (0.7, 0.0), 'delivry everytime': (0.0, 0.0), 'desktop': (0.315, -0.013), 'buttons': (0.267, -0.097), 'window': (0.0, -0.075), 'usage': (0.425, 0.0), 'weeks': (1.0, 0.0), 'holiday': (0.0, -0.075), 'laptop table': (0.0, -0.6), 'couple': (1.0, 0.0), 'material': (0.0, 0.0), 'amazon': (0.0, -0.5), 'hands': (0.0, -0.05), 'cable': (0.7, 0.0), 'product work': (0.45, 0.0), 'works': (0.6, 0.0), 'flipkart': (0.0, 0.0), 'weight': (0.2, -0.094), 'ms116': (0.6, 0.0), 'design': (0.533, 0.0), 'quantum': (0.0, 0.0), 'click': (0.364, -0.058), 'wire': (0.25, -0.113), 'gamers': (0.233, -0.278), 'rs': (0.0, 0.0), 'please': (0.0, -0.5), 'seller': (1.0, 0.0), 'order': (0.214, 0.0), 'cause': (0.0, 0.0), 'body': (0.5, 0.0), 'terms': (0.35, -0.25), 'hours': (0.0, 0.0), 'box': (0.438, 0.0), 'ok': (0.475, 0.0), 'working': (0.4, 0.0), 'anything': (0.0, 0.0), 'package': (0.35, -0.35), 'months': (0.568, 0.0), 'hence': (0.0, -0.075), 'replacement': (0.0, -0.075), 'point': (0.493, 0.0), 'color': (0.333, -0.056), 'number': (0.375, 0.0), 'one': (0.7, 0.0), 'device': (0.45, 0.0), 'champ': (1.0, 0.0), 'quality': (0.268, -0.199), 'size': (0.638, 0.0), 'use': (0.45, 0.0), 'product thank': (0.5, 0.0), 'usb': (0.0, 0.0), 'service': (0.267, -0.167), 'yrs': (0.0, 0.0), 'store': (0.0, 0.0), 'website': (0.367, -0.056), 'product looks': (0.0, -0.5), 'buy': (0.5, -0.2), 'hp': (0.0, 0.0), 'pantuat': (0.0, 0.0), 'plastic parts': (0.0, -0.375), 'quality products': (0.7, 0.0), 'texture finish': (0.5, 0.0), 'look': (0.8, 0.0), 'official': (0.2, -0.083), 'budget': (0.792, 0.0), 'reviews': (0.0, 0.0), 'den': (0.0, 0.0), 'size means': (0.0, 0.0), 'palm': (0.0, 0.0), 'problem': (0.286, 0.0), 'mouses': (0.0, 0.0), 'compare': (0.55, 0.0), 'accessories': (0.35, -0.25), 'surface': (0.25, 0.0), 'something': (0.0, -0.5), 'till': (0.0, 0.0), 'ms11': (0.0, 0.0), 'parts': (0.0, 0.0), 'pad': (0.7, 0.0), 'performance': (0.55, 0.0), 'clicks': (0.0, -0.292), 'wheel': (0.35, -0.094), 'product': (0.384, -0.126), 'star': (0.286, 0.0), 'price': (0.65, 0.0), 'hand': (0.187, -0.017), 'connectivity': (0.25, 0.0), 'logitech': (0.0, -0.333), 'brands': (0.0, -0.1), 'sides': (0.0, -0.375), 'purchase': (1.0, 0.0), 'center': (0.0, -0.1), 'movement resolution': (1.0, 0.0), 'feels': (0.0, 0.0), 'playing': (0.0, 0.0), 'scroll': (0.55, 0.0), 'wire cable': (0.35, -0.05)}
+aspects wc:
+{'laptop': (0.3, -0.05), 'years': (0.1, 0.0), 'looks': (0.35, -0.167), 'desktop use': (0.7, 0.0), 'delivry everytime': (0.0, 0.0), 'desktop': (0.315, -0.013), 'buttons': (0.267, -0.097), 'window': (0.0, -0.075), 'usage': (0.425, 0.0), 'weeks': (1.0, 0.0), 'holiday': (0.0, -0.075), 'laptop table': (0.0, -0.6), 'couple': (1.0, 0.0), 'material': (0.0, 0.0), 'amazon': (0.0, -0.5), 'hands': (0.0, -0.05), 'cable': (0.7, 0.0), 'product work': (0.45, 0.0), 'works': (0.6, 0.0), 'flipkart': (0.0, 0.0), 'weight': (0.2, -0.094), 'ms116': (0.6, 0.0), 'design': (0.533, 0.0), 'quantum': (0.0, 0.0), 'click': (0.364, -0.058), 'wire': (0.25, -0.113), 'gamers': (0.233, -0.278), 'rs': (0.0, 0.0), 'please': (0.0, -0.5), 'seller': (1.0, 0.0), 'order': (0.214, 0.0), 'cause': (0.0, 0.0), 'body': (0.5, 0.0), 'terms': (0.35, -0.25), 'hours': (0.0, 0.0), 'box': (0.438, 0.0), 'ok': (0.475, 0.0), 'working': (0.4, 0.0), 'anything': (0.0, 0.0), 'package': (0.35, -0.35), 'months': (0.568, 0.0), 'hence': (0.0, -0.075), 'replacement': (0.0, -0.075), 'point': (0.493, 0.0), 'color': (0.333, -0.056), 'number': (0.375, 0.0), 'one': (0.7, 0.0), 'device': (0.45, 0.0), 'champ': (1.0, 0.0), 'quality': (0.268, -0.199), 'size': (0.638, 0.0), 'use': (0.45, 0.0), 'product thank': (0.5, 0.0), 'usb': (0.0, 0.0), 'service': (0.267, -0.167), 'yrs': (0.0, 0.0), 'store': (0.0, 0.0), 'website': (0.367, -0.056), 'product looks': (0.0, -0.5), 'buy': (0.5, -0.2), 'hp': (0.0, 0.0), 'pantuat': (0.0, 0.0), 'plastic parts': (0.0, -0.375), 'quality products': (0.7, 0.0), 'texture finish': (0.5, 0.0), 'look': (0.8, 0.0), 'official': (0.2, -0.083), 'budget': (0.792, 0.0), 'reviews': (0.0, 0.0), 'den': (0.0, 0.0), 'size means': (0.0, 0.0), 'palm': (0.0, 0.0), 'problem': (0.286, 0.0), 'mouses': (0.0, 0.0), 'compare': (0.55, 0.0), 'accessories': (0.35, -0.25), 'surface': (0.25, 0.0), 'something': (0.0, -0.5), 'till': (0.0, 0.0), 'ms11': (0.0, 0.0), 'parts': (0.0, 0.0), 'pad': (0.7, 0.0), 'performance': (0.55, 0.0), 'clicks': (0.0, -0.292), 'wheel': (0.35, -0.094), 'product': (0.384, -0.126), 'star': (0.286, 0.0), 'price': (0.65, 0.0), 'hand': (0.187, -0.017), 'connectivity': (0.25, 0.0), 'logitech': (0.0, -0.333), 'brands': (0.0, -0.1), 'sides': (0.0, -0.375), 'purchase': (1.0, 0.0), 'center': (0.0, -0.1), 'movement resolution': (1.0, 0.0), 'feels': (0.0, 0.0), 'playing': (0.0, 0.0), 'scroll': (0.55, 0.0), 'wire cable': (0.35, -0.05)}
+positive:
+{'website': 0.367, 'compare': 0.55, 'official': 0.2, 'weight': 0.2, 
