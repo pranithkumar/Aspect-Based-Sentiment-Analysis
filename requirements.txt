@@ -4,7 +4,7 @@ autocorrect==0.3.0
 Automat==0.6.0
 backports.functools-lru-cache==1.4
 backports.weakref==1.0.post1
-bleach==1.5.0
+bleach==3.1.2
 boto==2.48.0
 boto3==1.5.10
 botocore==1.8.24
