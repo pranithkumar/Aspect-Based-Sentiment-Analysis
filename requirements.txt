@@ -29,7 +29,7 @@ fuzzywuzzy==0.16.0
 gensim==3.2.0
 gingerit==0.6.0
 html2text
-html5lib==0.9999999
+html5lib==0.99999999
 hyperlink==17.3.1
 idna==2.6
 incremental==17.5.0
